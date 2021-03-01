@@ -1,0 +1,32 @@
+$text_color: #d0d1d3;
+
+#navigation {
+  background-color: #2a2f32;
+  position: fixed;
+  top: 0;
+  left: 330px;
+  right: 0;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 400px;
+
+  div {
+    color: white;
+    text-align: start;
+    * {
+      margin: 0px 1px 0 10px;
+      margin: 0px 1px 0 10px;
+    }
+
+    small {
+      color: rgba(255, 255, 255, 0.664);
+    }
+
+    svg {
+      color: white;
+    }
+  }
+}
+// }
