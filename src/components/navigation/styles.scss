@@ -1,0 +1,39 @@
+$text_color: #d0d1d3;
+
+#navigation {
+  background-color: #2a2f32;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+
+  img {
+    width: 43px;
+    background-color: $text_color;
+    border-radius: 50%;
+  }
+
+  div {
+    color: white;
+    text-align: start;
+    * {
+      margin: 0px 1px 0 10px;
+      margin: 0px 1px 0 10px;
+    }
+
+    small {
+      color: rgba(255, 255, 255, 0.664);
+    }
+
+    svg {
+      color: white;
+    }
+  }
+}
+// }
