@@ -14,6 +14,7 @@ const NavBar = () => {
         <img
           src={process.env.PUBLIC_URL + "default-profile.png"}
           alt="default-profile"
+          className="user-img-default"
         />
         <div>
           <h6>{"User Name"}</h6>
