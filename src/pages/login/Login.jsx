@@ -1,9 +1,9 @@
+import "./login-styles.scss";
 import React, { useState } from "react";
 import fetchBe from "../../client/fetchBe";
 import { ContinueWith, DangerAlert, WhatsAppLogo } from "../../components";
 import { Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./login-styles.scss";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
@@ -42,8 +42,8 @@ export default function Login() {
         <hr />
         <div className="container" style={{ maxWidth: "550px" }}>
           <div className="row d-flex" style={{ textAlign: "center" }}>
-            <div className="col-12" style={{ color: "white" }}>
-              <strong>To continue, log in to Spotify</strong>
+            <div className="col-12" style={{ color: "#000000" }}>
+              <strong>To continue, log in to WhatsApp</strong>
             </div>
             <ContinueWith
               title="Continue with Facebook"
