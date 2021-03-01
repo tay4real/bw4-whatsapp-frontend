@@ -1,0 +1,38 @@
+.btn-apple {
+  background-color: rgba(177, 177, 177, 0.336);
+  color: black;
+  border-color: white;
+  text-transform: uppercase;
+}
+
+.btn-apple:hover {
+  background-color: rgba(100, 100, 100, 0.63);
+}
+
+.btn-google {
+  background-color: white;
+  color: black;
+  border-color: white;
+  text-transform: uppercase;
+}
+
+.btn-google:hover {
+  background-color: rgba(0, 0, 0, 0.37);
+  color: white;
+}
+
+.btn-facebook {
+  background-color: #3b5998;
+  color: white;
+  text-transform: uppercase;
+}
+
+.btn-facebook:hover {
+  background-color: #5a698a;
+  color: white;
+}
+
+.btn {
+  border: 1px solid green;
+  color: black;
+}

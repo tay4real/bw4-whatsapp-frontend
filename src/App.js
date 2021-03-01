@@ -1,22 +1,36 @@
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import "./App.scss";
 import Home from "./pages/home";
 import NavBar from "./components/navigation";
 import LeftNavBar from "./components/left-side-nav";
+import Login from "./pages/login";
+import Register from "./pages/register";
+import Logout from "./pages/logout";
 
-function App() {
+function App({ location }) {
   return (
     <div className="App">
-      <LeftNavBar />
-      <NavBar />
+      {location.pathname === "/login" ||
+        location.pathname === "/register" ||
+        location.pathname === "/logout" || (
+          <>
+            <LeftNavBar />
+            <NavBar />
+          </>
+        )}
+
       <Switch>
-        <div id="main-section">
-          <Route path="/" exact component={Home} />
-        </div>
+        <Route path="/login" exact component={Login} />
+        <Route path="/register" exact component={Register} />
+        <Route path="/logout" exact component={Logout} />
+
+        <Route path="/" exact component={Home} />
+
+        {/* Default PATH */}
         <Redirect to="/" />
       </Switch>
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);
