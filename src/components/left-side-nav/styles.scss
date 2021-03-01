@@ -22,16 +22,18 @@
 
   #search {
     position: relative;
-    margin: 5px 10px;
+    margin: 5px 10px 5px 0px;
     border-radius: 15px;
     width: 300px;
     background-color: #323739;
     color: white;
     padding-left: 40px;
+    border: none;
+    height: 35px;
   }
 
   #search-icon {
-    top: 13px;
+    top: 15px;
     left: 35px;
     z-index: 10;
 
