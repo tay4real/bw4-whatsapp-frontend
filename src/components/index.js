@@ -34,13 +34,6 @@ export const WhatsAppLogo = (maxWidth = "25px") => (
 export const WhastAppBanner = () => (
   <div className="landing-header">
     <Link to="/">
-      {/* <img
-        style={{
-          width: "39px",
-        }}
-        src={process.env.PUBLIC_URL + "logo240.png"}
-        alt="Whatsapp Web"
-      /> */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="39"
