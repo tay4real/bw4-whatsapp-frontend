@@ -18,9 +18,10 @@ function App() {
           path="/"
           exact
           render={(props) => (
-            <Protected>
-              <Home {...props} />
-            </Protected>
+            // <Protected>
+            //   <Home {...props} />
+            // </Protected>
+             <Home {...props} />
           )}
         />
 
