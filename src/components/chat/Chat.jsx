@@ -14,11 +14,11 @@ export default function Chat() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
-  useEffect(() => {
-    socket.on("bmsg", (msg) => setMessages((messages) => messages.concat(msg)));
+  //   useEffect(() => {
+  //     socket.on("bmsg", (msg) => setMessages((messages) => messages.concat(msg)));
 
-    socket.on("connect", () => console.log("connected to socket"));
-  }, []);
+  //     socket.on("connect", () => console.log("connected to socket"));
+  //   }, []);
 
   const handleMessage = (e) => {
     setMessage(e.currentTarget.value);
@@ -49,6 +49,8 @@ export default function Chat() {
         ))}
       </ul>
       <form id="chat" onSubmit={sendMessage}>
+          <span></span>
+          <span></span>
         <input autoComplete="off" value={message} onChange={handleMessage} />
         <Button type="submit" className="rounded-0">
           Send
