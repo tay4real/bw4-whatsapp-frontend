@@ -6,6 +6,7 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import React from "react";
 import { Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Profile from "./profile/Profile";
 
 export const ContinueWith = ({ title, className, loginWith }) => {
   return (
@@ -36,28 +37,8 @@ export const WhatsAppLogo = (maxWidth = "25px") => (
   </div>
 );
 
-const options = [
-  "None",
-  "Atria",
-  "Callisto",
-  "Dione",
-  "Ganymede",
-  "Hangouts Call",
-  "Luna",
-  "Oberon",
-  "Phobos",
-  "Pyxis",
-  "Sedna",
-  "Titania",
-  "Triton",
-  "Umbriel",
-];
-
-const ITEM_HEIGHT = 48;
-
 export const CustomDropdown = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  // const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -74,6 +55,7 @@ export const CustomDropdown = () => {
         aria-controls="simple-menu"
         aria-haspopup="true"
         onClick={handleClick}
+        style={{ padding: 0, margin: 0 }}
       >
         <BiDotsVerticalRounded size={25} color="white" />
       </IconButton>
@@ -84,10 +66,17 @@ export const CustomDropdown = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Profile />
+        </MenuItem>
       </Menu>
     </div>
   );
 };
+
+export const ProfileImg = (props) => (
+  <div>
+    <img {...props} src={props.img_url} alt="user-img" />
+  </div>
+);
