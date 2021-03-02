@@ -1,11 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import "./styles.scss";
 import { BsSearch } from "react-icons/bs";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 
 const NavBar = () => {
-  const { userInfos } = useSelector((state) => state.user);
+  // const { userInfos } = useSelector((state) => state.user);
   // console.log(userInfos.username);
 
   return (

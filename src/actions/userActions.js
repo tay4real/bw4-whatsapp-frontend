@@ -21,7 +21,6 @@ export function fetchUser() {
 
     try {
       const res = await fetchAuth.get("/users/me");
-      console.log("res", res);
       dispatch(getUserSuccess(res.data));
     } catch (error) {
       dispatch(getUserFailure(error));

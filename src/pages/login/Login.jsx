@@ -1,9 +1,9 @@
 import "./login-styles.scss";
 import React, { useState } from "react";
-import fetchBe from "../../client/fetchBe";
 import { ContinueWith, DangerAlert, WhatsAppLogo } from "../../components";
 import { Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import fetchAuth from "../../client/fetchAuth";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
@@ -19,14 +19,9 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const { data } = await fetchBe.post("/users/login", credentials);
-      localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem("refreshToken", data.refreshToken);
+      const res = await fetchAuth.post("/users/login", credentials);
 
-      if (
-        localStorage.getItem("refreshToken") &&
-        localStorage.getItem("accessToken")
-      ) {
+      if (res.statusText === "OK") {
         window.location.replace("/");
       }
       setLoading(false);
