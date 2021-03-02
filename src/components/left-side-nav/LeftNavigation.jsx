@@ -1,9 +1,9 @@
 import React from "react";
 import "./styles.scss";
 import { BsSearch } from "react-icons/bs";
-import { BiDotsVerticalRounded } from "react-icons/bi";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { BiLoaderCircle } from "react-icons/bi";
+import { CustomDropdown } from "..";
 
 export default function LeftNavigation() {
   return (
@@ -20,7 +20,7 @@ export default function LeftNavigation() {
         <div>
           <BiLoaderCircle size={25} />
           <IoChatboxEllipsesOutline size={25} />
-          <BiDotsVerticalRounded size={25} />
+          <CustomDropdown />
         </div>
       </div>
 
