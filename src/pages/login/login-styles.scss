@@ -1,3 +1,14 @@
+#login::before {
+  background-color: #00bfa5;
+  content: "";
+  height: 222px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+}
+
 .btn-apple {
   background-color: rgba(177, 177, 177, 0.336);
   color: black;

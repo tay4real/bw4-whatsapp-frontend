@@ -1,7 +1,7 @@
 import "./login-styles.scss";
 import React, { useState } from "react";
 import fetchBe from "../../client/fetchBe";
-import { ContinueWith, DangerAlert, WhatsAppLogo } from "../../components";
+import { ContinueWith, DangerAlert, WhastAppBanner } from "../../components";
 import { Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -37,10 +37,9 @@ export default function Login() {
   };
   return (
     <div>
-      <div id="login" className="pt-5">
-        <WhatsAppLogo />
-        <hr />
-        <div className="container" style={{ maxWidth: "550px" }}>
+      <WhastAppBanner />
+      <div id="login" className="">
+        <div className="landing-container ">
           <div className="row d-flex" style={{ textAlign: "center" }}>
             <div className="col-12" style={{ color: "#000000" }}>
               <strong>To continue, log in to WhatsApp</strong>
