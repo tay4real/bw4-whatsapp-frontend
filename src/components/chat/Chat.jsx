@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import io from "socket.io-client";
+import { Button } from "react-bootstrap";
 
 const connOpt = {
   transports: ["websocket", "polling"],
@@ -12,7 +13,6 @@ export default function Chat() {
   const [username, setUsername] = useState(null);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [showModal, setShowModal] = useState(true);
 
   useEffect(() => {
     socket.on("bmsg", (msg) => setMessages((messages) => messages.concat(msg)));
@@ -41,7 +41,7 @@ export default function Chat() {
   };
 
   return (
-    <>
+    <div id="chat-area">
       <ul id="messages">
         {messages.map((msg, i) => (
           <li
@@ -58,6 +58,6 @@ export default function Chat() {
           Send
         </Button>
       </form>
-    </>
+    </div>
   );
 }
