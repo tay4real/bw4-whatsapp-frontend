@@ -6,7 +6,7 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 
 const NavBar = () => {
   const { userInfos } = useSelector((state) => state.user);
-  console.log(userInfos.username);
+  // console.log(userInfos.username);
 
   return (
     <div id="navigation">

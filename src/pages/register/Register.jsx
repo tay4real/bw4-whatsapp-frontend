@@ -24,14 +24,8 @@ export default function Register() {
     setLoading(true);
 
     try {
-      const { data } = await fetchBe.post("/users/register", credentials);
-      localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem("refreshToken", data.refreshToken);
-
-      if (
-        localStorage.getItem("refreshToken") &&
-        localStorage.getItem("accessToken")
-      ) {
+      const res = await fetchBe.post("/users/register", credentials);
+      if (res.statusText === "OK") {
         window.location.replace("/");
       }
       setLoading(false);
@@ -128,6 +122,8 @@ export default function Register() {
                 placeholder="Confirm your password"
                 id="exampleInputPassword2"
                 name="password"
+                value={credentials.password}
+                onChange={handleChange}
               />
             </div>
             <div
@@ -152,7 +148,7 @@ export default function Register() {
             <div className="row" style={{ textAlign: "center" }}>
               <div className="col-12 mb-3">
                 <strong>
-                  Already have an Account ? <Link to="/register">Sign In</Link>
+                  Already have an Account ? <Link to="/login">Sign In</Link>
                 </strong>
               </div>
             </div>

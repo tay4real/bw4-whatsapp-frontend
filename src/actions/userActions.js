@@ -20,8 +20,9 @@ export function fetchUser() {
     dispatch(getUser());
 
     try {
-      const { data } = await fetchAuth.get("/users/me");
-      dispatch(getUserSuccess(data));
+      const res = await fetchAuth.get("/users/me");
+      console.log("res", res);
+      dispatch(getUserSuccess(res.data));
     } catch (error) {
       dispatch(getUserFailure(error));
     }
