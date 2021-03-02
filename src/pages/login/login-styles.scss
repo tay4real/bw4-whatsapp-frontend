@@ -2,10 +2,6 @@
   padding-left: 3rem;
   padding-right: 3rem;
   flex-direction: row;
-  // display: flex;
-  // flex: 1 0 auto;
-  // width: 100%;
-  // flex-wrap: nowrap;
   &::before {
     background-color: #00bfa5;
     content: "";
@@ -40,10 +36,9 @@
   }
   .thirdPartyContainer {
     display: flex;
-    flex-direction: row;
-    justify-content: between;
-    align-items: center;
-    margin: 1rem auto;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto 1rem;
   }
   .btn {
     width: 100%;
@@ -54,10 +49,22 @@
       background-color: #007263;
     }
   }
+  .landing-b {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
   .seperator {
-    border-top: 1px solid #ccc;
-    height: 1px;
-    width: 95%;
+    border-left: 1px solid #ccc;
+    height: 100%;
+    width: 1px;
+  }
+  .description {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 1rem auto;
   }
   .snsIcon {
     margin: auto 1rem;
@@ -89,17 +96,36 @@
   margin: 4rem auto auto;
   padding: 4rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-self: center;
   max-width: 900px;
   background: white;
-  box-shadow: 4px 4px 16px 0px #333;
+  box-shadow: 8px 8px 16px 0px #333;
   border-radius: 4px;
 }
 @media screen and (max-width: 1000px) {
+  #login {
+    .seperator {
+      border-top: 1px solid #ccc;
+      height: 1px;
+      width: 95%;
+    }
+  }
+  .description {
+    margin-top: 2rem !important;
+  }
+  .thirdPartyContainer {
+    flex-direction: row !important;
+  }
+  .description {
+    h5 {
+      display: none;
+    }
+  }
   .landing-container {
     margin: 4rem auto auto auto;
+    flex-direction: column;
   }
 }
 

@@ -43,7 +43,7 @@ export default function Login() {
       <div id="login" className="">
         <div className="landing-container">
           {error && <DangerAlert messsage={error} />}
-          <div>
+          <div id="landing-a">
             <div className="row d-flex" style={{ textAlign: "center" }}>
               <div
                 className="col-12"
@@ -98,23 +98,44 @@ export default function Login() {
                 </div>
               </div>
             </div>
-          </div>
-          <hr className="seperator" />
-          <div className="thirdPartyContainer">
-            <Link to={`${url}/googleLogin`}>
-              <FcGoogle size={48} className="snsIcon snsGoogle" />
-            </Link>
-            <FaFacebook size={48} className="snsIcon snsFacebook" />
-            <FaTwitter size={48} className="snsIcon  snsTwitter" />
+            <hr />
+            <span
+              style={{
+                textAlign: "center",
+                color: "rgba(202, 204, 203, 0.253)",
+              }}
+            >
+              <a href="#ddd">Terms & Condition</a> and{" "}
+              <a href="#dddd">Privacy Policy</a>
+            </span>
           </div>
 
-          <hr />
-          <span
-            style={{ textAlign: "center", color: "rgba(202, 204, 203, 0.253)" }}
-          >
-            <a href="#ddd">Terms & Condition</a> and{" "}
-            <a href="#dddd">Privacy Policy</a>
-          </span>
+          <div id="landing-b">
+            {/* <hr className="seperator" /> */}
+            <div className="description">
+              <h4>Or Sign In With Following Services</h4>
+            </div>
+            <div className="thirdPartyContainer">
+              <Link to={`${url}/googleLogin`}>
+                <div className="description">
+                  <FcGoogle size={48} className="snsIcon snsGoogle" />
+                  <h5>Sign in with Google</h5>
+                </div>
+              </Link>
+              <Link to={`${url}/facebookLogin`}>
+                <div className="description">
+                  <FaFacebook size={48} className="snsIcon snsFacebook" />
+                  <h5>Sign in with Facebook</h5>
+                </div>
+              </Link>
+              <Link to={`${url}/twitterLogin`}>
+                <div className="description">
+                  <FaTwitter size={48} className="snsIcon  snsTwitter" />
+                  <h5>Sign in with Twitter</h5>
+                </div>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
