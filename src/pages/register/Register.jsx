@@ -9,7 +9,12 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+  });
 
   const handleChange = (e) =>
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -65,6 +70,34 @@ export default function Register() {
 
           <form onSubmit={submitUser}>
             <div className="form-group">
+              <label>First Name</label>
+
+              <input
+                type="text"
+                className="form-control"
+                id="exampleInputEmail1"
+                placeholder="Your Name"
+                name="firstName"
+                value={credentials.firstName}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Last Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="exampleInputEmail1"
+                placeholder="Your Name"
+                name="lastName"
+                value={credentials.lastName}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Email</label>
               <input
                 type="text"
                 className="form-control"
@@ -76,6 +109,7 @@ export default function Register() {
               />
             </div>
             <div className="form-group">
+              <label>Password</label>
               <input
                 type="password"
                 className="form-control"
@@ -86,47 +120,40 @@ export default function Register() {
                 onChange={handleChange}
               />
             </div>
+            <div className="form-group">
+              <label>Confirm your password</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Confirm your password"
+                id="exampleInputPassword2"
+                name="password"
+              />
+            </div>
             <div
-              className="form-group form-check d-flex"
+              className="form-group form-check d-flex pl-0"
               style={{ justifyContent: "space-between" }}
             >
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="exampleCheck1"
-              />
-              <label className="form-check-label" htmlFor="exampleCheck1">
-                Remember me
-              </label>
               {loading ? (
                 <Spinner animation="border" />
               ) : (
                 <button
-                  className="btn btn-success btn-lg"
-                  style={{ width: "150px" }}
+                  className="btn btn-success btn-lg "
+                  style={{ width: "100%" }}
                 >
-                  Log In
+                  Sign Up
                 </button>
               )}
             </div>
           </form>
-          <div style={{ textAlign: "center" }}>
-            <a href="#ssss">Forgot your Password ?</a>
-          </div>
           <hr />
           {error && <DangerAlert messsage={error} />}
           <div>
             <div className="row" style={{ textAlign: "center" }}>
               <div className="col-12 mb-3">
-                <strong>Don't have an Account ?</strong>
-              </div>
-              <div className="col-12">
-                <Link
-                  to="/register"
-                  className="btn btn-outline-light btn-lg btn-block"
-                >
-                  SIGN UP FOR WHATSAPP
-                </Link>
+                <strong>
+                  Already have an Account ? <Link to="/register">Sign In</Link>
+                </strong>
               </div>
             </div>
           </div>
