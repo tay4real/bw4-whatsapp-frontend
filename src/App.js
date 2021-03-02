@@ -25,7 +25,7 @@ function App() {
         />
 
         {/* Default PATH */}
-        <Redirect to="/" />
+        <Redirect to="/login" />
       </Switch>
     </div>
   );
