@@ -23,11 +23,11 @@ export default function LeftNavigation() {
           <IoChatboxEllipsesOutline size={25} />
 
           <Dropdown>
-            <Dropdown.Toggle variant="success" as={BiDotsVerticalRounded}>
-              aaa
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+              <BiDotsVerticalRounded size={25} />
             </Dropdown.Toggle>
 
-            {/* <BiDotsVerticalRounded size={25} id="dropdown-basic" /> */}
+            {/*  */}
             <Dropdown.Menu>
               <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
