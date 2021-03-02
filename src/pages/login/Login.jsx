@@ -23,9 +23,7 @@ export default function Login() {
     try {
       const res = await fetchAuth.post("/users/login", credentials);
 
-      if (res.statusText === "OK") {
-        history.push("/");
-      }
+      if (res.statusText === "OK") history.push("/");
       setLoading(false);
     } catch (error) {
       setLoading(false);
