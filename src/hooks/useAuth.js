@@ -4,12 +4,15 @@ import { fetchUser } from "../actions/userActions";
 
 const useAuth = () => {
   const { userInfos, loading, error } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchUser());
 
-    if (error && error.message) {
+    console.log("userfetch");
+
+    if (error) {
       window.location.replace("/logout");
     }
   }, [dispatch, error]);

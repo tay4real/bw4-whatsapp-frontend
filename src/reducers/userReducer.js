@@ -1,7 +1,7 @@
 import { user_action_types as c } from "../actions/constants";
 
 const initialState = {
-  userInfos: { _id: null, username: null, email: null },
+  userInfos: { _id: null, firstName: null, lastName: null, email: null },
   loading: false,
   error: null,
 };
