@@ -56,7 +56,7 @@ export default function Login() {
             <ContinueWith
               title="Continue with Google"
               className="btn btn-google btn-lg btn-block"
-              loginWith={process.env.REACT_APP_API_URL + "/users/google-login"}
+              loginWith={process.env.REACT_APP_API_URL + "/users/googleLogin"}
             />
           </div>
           <div className="divide" style={{ marginBottom: "30px" }}>
