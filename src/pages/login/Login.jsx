@@ -38,8 +38,8 @@ export default function Login() {
       <WhastAppBanner />
       <div id="login" className="">
         <div className="landing-container">
-          {error && <DangerAlert messsage={error} />}
           <div id="landing-a">
+            {error && <DangerAlert messsage={error} />}
             <div className="row d-flex" style={{ textAlign: "center" }}>
               <div
                 className="col-12"
