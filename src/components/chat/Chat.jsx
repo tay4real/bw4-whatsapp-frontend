@@ -36,10 +36,6 @@ export default function Chat() {
     }
   };
 
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
-
   return (
     <div id="chat-area">
       <ul id="messages">
