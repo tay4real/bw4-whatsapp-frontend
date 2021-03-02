@@ -4,6 +4,7 @@ import { BsSearch } from "react-icons/bs";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { BiLoaderCircle } from "react-icons/bi";
+import { Dropdown } from "react-bootstrap";
 
 export default function LeftNavigation() {
   return (
@@ -20,7 +21,19 @@ export default function LeftNavigation() {
         <div>
           <BiLoaderCircle size={25} />
           <IoChatboxEllipsesOutline size={25} />
-          <BiDotsVerticalRounded size={25} />
+
+          <Dropdown>
+            <Dropdown.Toggle variant="success" as={BiDotsVerticalRounded}>
+              aaa
+            </Dropdown.Toggle>
+
+            {/* <BiDotsVerticalRounded size={25} id="dropdown-basic" /> */}
+            <Dropdown.Menu>
+              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
       </div>
 
