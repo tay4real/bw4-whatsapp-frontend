@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import Chat from "../../components/chat";
 import LeftNavBar from "../../components/left-side-nav";
 import NavBar from "../../components/navigation";
