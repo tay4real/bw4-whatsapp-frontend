@@ -2,18 +2,12 @@ import "./register-styles.scss";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import fetchBe from "../../client/fetchBe";
-import {
- 
-  DangerAlert,
-
-  WhastAppBanner,
-} from "../../components";
+import { DangerAlert, WhastAppBanner } from "../../components";
 import { Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { FcGoogle } from "react-icons/fc";
 import { FaTwitter, FaFacebook } from "react-icons/fa";
-
 
 export default function Register() {
   const history = useHistory();
