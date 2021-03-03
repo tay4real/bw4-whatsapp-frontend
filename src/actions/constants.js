@@ -4,3 +4,7 @@ export const user_action_types = {
   GET_USER_SUCCESS: "GET_USER_SUCCESS",
   GET_USER_FAILURE: "GET_USER_FAILURE",
 };
+
+export const components_action_types = {
+  TOGGLE_INFOSIDEBAR: "TOGGLE_INFOSIDEBAR",
+};
