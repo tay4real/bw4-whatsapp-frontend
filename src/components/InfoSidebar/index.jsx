@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RiPencilFill } from "react-icons/ri";
 import { IoMdThumbsDown, IoMdExit } from "react-icons/io";
 import { Drawer, IconButton } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { MdClose } from "react-icons/md";
 import "./styles.scss";
 import { toggleInfoSidebar } from "../../actions/componentsActions";
