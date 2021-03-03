@@ -1,10 +1,8 @@
 import React from "react";
 // import { useSelector } from "react-redux";
 import NavBarMenu from "../NavBarMenu";
-import { Row, Col } from "react-bootstrap";
 import "./styles.scss";
 import { BsSearch } from "react-icons/bs";
-import { BiDotsVerticalRounded } from "react-icons/bi";
 
 const NavBar = () => {
   // const { userInfos } = useSelector((state) => state.user);
