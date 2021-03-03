@@ -6,15 +6,11 @@ import NavBar from "../../components/navigation";
 import InfoSidebar from "../../components/InfoSidebar";
 
 export default function Home() {
-  const { showInfoSidebar } = useSelector((state) => state.components);
-
   return (
     <div>
       <LeftNavBar />
       <NavBar />
-      <InfoSidebar
-        style={{ display: showInfoSidebar === true ? "block" : "none" }}
-      />
+      <InfoSidebar />
       <Chat />
     </div>
   );
