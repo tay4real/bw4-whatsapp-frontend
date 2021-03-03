@@ -4,7 +4,6 @@ import { fetchUser } from "../actions/userActions";
 
 const useAuth = () => {
   const { userInfos, loading, error } = useSelector((state) => state.user);
-
   const dispatch = useDispatch();
 
   useEffect(() => {

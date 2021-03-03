@@ -4,11 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import { ProfileImg } from "..";
 import { useSelector } from "react-redux";
-// import List from "@material-ui/core/List";
-// import Divider from "@material-ui/core/Divider";
-// import ListItem from "@material-ui/core/ListItem";
-// import ListItemIcon from "@material-ui/core/ListItemIcon";
-// import ListItemText from "@material-ui/core/ListItemText";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import "./profile.scss";
 
@@ -38,30 +33,48 @@ export default function Profile() {
     setState(open);
   };
 
-  const list = () => (
-    <div
-      className={clsx(classes.list)}
-      role="presentation"
-      id="profile-component"
-    >
-      <div id="proile-top">
-        <AiOutlineArrowLeft size={20} />
-        <h5> Profile</h5>
-      </div>
-
-      <ProfileImg
-        img_url={userInfos.image}
-        style={{ width: "250px", hieght: "250px", borderRadius: "50%" }}
-      />
-    </div>
-  );
-
   return (
     <div>
       <>
         <div onClick={toggleDrawer(true)}>Profile</div>
-        <Drawer anchor={"left"} open={state} onClose={toggleDrawer(false)}>
-          {list("left")}
+        <Drawer
+          anchstyle={{ display: "none" }}
+          or={"left"}
+          open={state}
+          onClose={toggleDrawer(false)}
+        >
+          <div
+            className={clsx(classes.list)}
+            role="presentation"
+            id="profile-component"
+          >
+            <div id="proile-top">
+              <h5 onClick={toggleDrawer(false)}>
+                <AiOutlineArrowLeft size={20} /> Profile
+              </h5>
+            </div>
+
+            <div id="img-profile">
+              <ProfileImg
+                img_url={userInfos.avatar}
+                style={{ width: "170px", hieght: "250px", borderRadius: "50%" }}
+              />
+            </div>
+            <div className="border-bottom">
+              Your Name
+              <h4>{userInfos.firstName}</h4>
+            </div>
+
+            <p>
+              This is not username or pin. This name will be visible to your
+              WhatsApp concatcts
+            </p>
+
+            <div>
+              About
+              <h4>Hey there! I am using WhatsApp.</h4>
+            </div>
+          </div>
         </Drawer>
       </>
     </div>
