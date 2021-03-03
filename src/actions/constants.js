@@ -10,3 +10,8 @@ export const all_user_action_types = {
   GET_ALL_USERS_SUCCESS: "GET_ALL_USERS_SUCCESS",
   GET_ALL_USERS_FAILURE: "GET_ALL_USERS_FAILURE",
 };
+
+export const components_action_types = {
+  TOGGLE_INFOSIDEBAR: "TOGGLE_INFOSIDEBAR",
+  TOGGLE_PROFILE_SIDEBAR: "TOGGLE_PROFILE_SIDEBAR",
+};

@@ -25,7 +25,7 @@ export default function LeftNavigation() {
       </div>
 
       <div>
-        <div className="d-flex">
+        <div className="d-flex ">
           <BsSearch id="search-icon" />
           <input
             type="text"

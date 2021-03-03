@@ -1,27 +1,32 @@
 import React from "react";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import NavBarMenu from "../NavBarMenu";
 import "./styles.scss";
 import { BsSearch } from "react-icons/bs";
-import { BiDotsVerticalRounded } from "react-icons/bi";
 
 const NavBar = () => {
+  // const { userInfos } = useSelector((state) => state.user);
+  const { showInfoSidebar } = useSelector((state) => state.components);
+  // console.log(userInfos.username);
+
   return (
     <div id="navigation">
-      <div className="d-flex">
+      <div className="">
         <img
           src={process.env.PUBLIC_URL + "default-profile.png"}
           alt="default-profile"
           className="user-img-default"
         />
-        <div>
+        <div id="nav-userInfo">
           <h6>{"User Name"}</h6>
           <small>last seen 1/4/2021 at 2:21 PM</small>
         </div>
       </div>
 
-      <div>
+      <div className={showInfoSidebar === true ? "three" : "two"}>
+        {/* <div className="three"> */}
         <BsSearch size={17} />
-        <BiDotsVerticalRounded size={23} />
+        <NavBarMenu />
       </div>
     </div>
   );
