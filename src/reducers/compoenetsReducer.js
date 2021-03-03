@@ -1,13 +1,13 @@
 import { components_action_types as c } from "../actions/constants";
 
 const initialState = {
-  showNavBarMenu: false,
+  showInfoSidebar: false,
 };
 
 export default function compoentsReducer(state = initialState, action) {
   switch (action.type) {
-    case c.TOGGLE_NAVBAR_MENU:
-      return { showNavBarMenu: !state.navBarMenu };
+    case c.TOGGLE_INFOSIDEBAR:
+      return { showInfoSidebar: !state.showInfoSidebar };
 
     default:
       return state;

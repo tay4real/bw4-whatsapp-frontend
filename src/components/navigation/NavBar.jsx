@@ -6,7 +6,7 @@ import { BsSearch } from "react-icons/bs";
 
 const NavBar = () => {
   // const { userInfos } = useSelector((state) => state.user);
-  const showNavBarMenu = useSelector((state) => state.components);
+  const showInfoSidebar = useSelector((state) => state.components);
   // console.log(userInfos.username);
 
   return (
@@ -23,7 +23,8 @@ const NavBar = () => {
         </div>
       </div>
 
-      <div className={showNavBarMenu ? "three" : "two"}>
+      <div className={showNavBarMenu === true ? "three" : "two"}>
+        {/* <div className="three"> */}
         <BsSearch size={17} />
         <NavBarMenu />
       </div>

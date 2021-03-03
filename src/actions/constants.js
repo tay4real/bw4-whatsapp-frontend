@@ -6,5 +6,5 @@ export const user_action_types = {
 };
 
 export const components_action_types = {
-  TOGGLE_NAVBAR_MENU: "TOGGLE_NAVBAR_MENU",
+  TOGGLE_INFOSIDEBAR: "TOGGLE_INFOSIDEBAR",
 };

@@ -6,15 +6,15 @@ import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import { BiDotsVerticalRounded } from "react-icons/bi";
-import { toggleNavbarMenu } from "../../actions/componentsActions";
+import { toogleInfoSidebar } from "../../actions/componentsActions";
 // const useStyles = makeStyles((theme) => ({
 // }));
 
 export default function SimplePopover() {
   // const classes = useStyles();
   const dispatch = useDispatch();
-  function toggleSideBar() {
-    dispatch(toggleNavbarMenu());
+  function toogleInfoSidebar() {
+    dispatch(toogleInfoSidebar());
   }
   const [anchorEl, setAnchorEl] = React.useState(null);
 
