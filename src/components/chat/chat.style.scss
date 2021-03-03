@@ -3,6 +3,7 @@
   bottom: 0;
   display: flex;
   padding: 1rem;
+  left: 330px;
 
   #message-wrapper {
     position: fixed;
@@ -48,7 +49,6 @@
 #emoji-picker-react {
   position: absolute;
   bottom: 90px;
-  left: 340px;
 }
 
 body {
