@@ -10,7 +10,6 @@ import fetchAuth from "../../client/fetchAuth";
 export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
   const handleChange = (e) =>
@@ -23,9 +22,7 @@ export default function Login() {
     try {
       const res = await fetchAuth.post("/users/login", credentials);
 
-      if (res.statusText === "OK") {
-        window.location.replace("/");
-      }
+      if (res.statusText === "OK") window.location.replace("/");
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -38,8 +35,8 @@ export default function Login() {
       <WhastAppBanner />
       <div id="login" className="">
         <div className="landing-container">
-          {error && <DangerAlert messsage={error} />}
           <div id="landing-a">
+            {error && <DangerAlert messsage={error} />}
             <div className="row d-flex" style={{ textAlign: "center" }}>
               <div
                 className="col-12"
