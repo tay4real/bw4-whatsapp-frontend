@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./chat.style.scss";
-import { RiSendPlane2Line } from "react-icons/ri";
 import Picker from "emoji-picker-react";
 import { GrEmoji } from "react-icons/gr";
 import { MdAttachFile } from "react-icons/md";
