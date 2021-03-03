@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./chat.style.scss";
 import Picker from "emoji-picker-react";
 import { GrEmoji } from "react-icons/gr";
-import { MdAttachFile } from "react-icons/md";
+import { MdAttachFile, MdClear } from "react-icons/md";
 import { BsFillMicFill } from "react-icons/bs";
 
 const EmojiPicker = ({ show }) => {
@@ -25,7 +25,11 @@ export default function Chat() {
     <div id="chat-component">
       <EmojiPicker show={showEmoji} />
       <div id="message-wrapper">
-        <GrEmoji size={30} onClick={toggleshowEmoji} />
+        {showEmoji ? (
+          <MdClear onClick={toggleshowEmoji} size={35} />
+        ) : (
+          <GrEmoji size={30} onClick={toggleshowEmoji} />
+        )}
 
         <label>
           <MdAttachFile size={25} style={{ margin: "0 10px" }} />
@@ -41,7 +45,7 @@ export default function Chat() {
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type a message"
         />
-        <BsFillMicFill size={25} />
+        <BsFillMicFill size={25} style={{ margin: "0 10px" }} />
       </div>
     </div>
   );
