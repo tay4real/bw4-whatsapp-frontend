@@ -66,7 +66,6 @@ export const CustomDropdown = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleClose}>
           <Profile />
         </MenuItem>
@@ -76,9 +75,7 @@ export const CustomDropdown = () => {
 };
 
 export const ProfileImg = (props) => (
-  <div>
-    <img {...props} src={props.img_url} alt="user-img" />
-  </div>
+  <img {...props} src={props.img_url} alt="user-img" />
 );
 
 export const WhastAppBanner = () => (

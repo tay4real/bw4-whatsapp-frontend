@@ -1,6 +1,7 @@
 #profile-component {
   background-color: #131c21;
   height: 100%;
+  color: aliceblue;
 
   #proile-top {
     display: flex;
@@ -12,11 +13,14 @@
     margin-bottom: 20px;
   }
 
-  img {
-    width: 100%;
+  #img-profile {
     display: flex;
-    align-items: center;
-    text-align: center;
     justify-content: center;
+    width: 100%;
   }
+}
+
+// sssssssssssssssssssssssssssssss
+.MuiBackdrop-root {
+  display: none !important;
 }
