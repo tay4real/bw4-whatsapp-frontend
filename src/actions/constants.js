@@ -4,3 +4,9 @@ export const user_action_types = {
   GET_USER_SUCCESS: "GET_USER_SUCCESS",
   GET_USER_FAILURE: "GET_USER_FAILURE",
 };
+
+export const all_user_action_types = {
+  GET_ALL_USERS: "GET_ALL_USERS",
+  GET_ALL_USERS_SUCCESS: "GET_ALL_USERS_SUCCESS",
+  GET_ALL_USERS_FAILURE: "GET_ALL_USERS_FAILURE",
+};
