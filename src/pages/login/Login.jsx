@@ -2,7 +2,7 @@ import "./login-styles.scss";
 import React, { useState } from "react";
 import { DangerAlert, WhastAppBanner } from "../../components";
 import { Spinner } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FaTwitter, FaFacebook } from "react-icons/fa";
 import fetchAuth from "../../client/fetchAuth";
@@ -10,7 +10,6 @@ import fetchAuth from "../../client/fetchAuth";
 export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const history = useHistory();
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
   const handleChange = (e) =>
@@ -23,7 +22,7 @@ export default function Login() {
     try {
       const res = await fetchAuth.post("/users/login", credentials);
 
-      if (res.statusText === "OK") history.push("/");
+      if (res.statusText === "OK") window.location.replace("/");
       setLoading(false);
     } catch (error) {
       setLoading(false);
