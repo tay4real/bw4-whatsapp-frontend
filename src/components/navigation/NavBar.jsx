@@ -23,7 +23,7 @@ const NavBar = () => {
         </div>
       </div>
 
-      <div className={showNavBarMenu === true ? "three" : "two"}>
+      <div className={showInfoSidebar === true ? "three" : "two"}>
         {/* <div className="three"> */}
         <BsSearch size={17} />
         <NavBarMenu />
