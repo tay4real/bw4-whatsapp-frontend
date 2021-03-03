@@ -15,9 +15,13 @@ $text_color: #d0d1d3;
   div {
     color: white;
     text-align: start;
-    * {
-      margin: 0px 1px 0 10px;
-      margin: 0px 1px 0 10px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    #nav-userInfo {
+      margin: auto 0;
+      flex-direction: column;
+      justify-content: flex-start;
     }
 
     small {
@@ -29,4 +33,3 @@ $text_color: #d0d1d3;
     }
   }
 }
-// }
