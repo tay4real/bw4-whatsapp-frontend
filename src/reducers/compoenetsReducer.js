@@ -8,9 +8,9 @@ const initialState = {
 export default function compoentsReducer(state = initialState, action) {
   switch (action.type) {
     case c.TOGGLE_INFOSIDEBAR:
-      return { showInfoSidebar: !state.showInfoSidebar };
+      return { ...state, showInfoSidebar: !state.showInfoSidebar };
     case c.TOGGLE_PROFILE_SIDEBAR:
-      return { showProfileSidebar: !state.showProfileSidebar };
+      return { ...state, showProfileSidebar: !state.showProfileSidebar };
     default:
       return state;
   }
