@@ -3,7 +3,7 @@ import "./styles.scss";
 import { BsSearch } from "react-icons/bs";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { BiLoaderCircle } from "react-icons/bi";
-import { CustomDropdown } from "..";
+// import { CustomDropdown } from "..";
 import LeftDropdownMenu from "../NavBarMenu/LeftDropdownMenu";
 export default function LeftNavigation() {
   return (

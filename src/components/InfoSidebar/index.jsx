@@ -10,7 +10,7 @@ import { toggleInfoSidebar } from "../../actions/componentsActions";
 
 const drawerWidth = 420;
 const mdGrey = "#2a2f32";
-const mdDark = "#131c21";
+// const mdDark = "#131c21";
 const mdBlack = "#0c1317";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -104,6 +104,7 @@ export default function InfoSidebar() {
         <div className="info">
           <div className="avatar">
             <img
+              alt="group avtar"
               src="http://getdrawings.com/free-icon-bw/best-group-icon-for-whatsapp-6.png"
               style={{ backgroundColor: "white" }}
             />
