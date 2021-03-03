@@ -110,7 +110,7 @@ export default function Register() {
                   type="text"
                   className="form-control"
                   id="exampleInputEmail1"
-                  placeholder="Username"
+                  placeholder="Display Name"
                   required
                   name="nickname"
                   value={credentials.nickname}
@@ -124,7 +124,7 @@ export default function Register() {
                   className="form-control"
                   id="exampleInputEmail1"
                   required
-                  placeholder="Email address or username"
+                  placeholder="Email address"
                   name="email"
                   value={credentials.email}
                   onChange={handleChange}
