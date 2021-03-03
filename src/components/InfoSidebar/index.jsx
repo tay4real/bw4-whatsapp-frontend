@@ -1,16 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RiPencilFill, RiThumbDownFill } from "react-icons/ri";
+import { RiPencilFill } from "react-icons/ri";
 import { IoMdThumbsDown, IoMdExit } from "react-icons/io";
-import {
-  Drawer,
-  IconButton,
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-} from "@material-ui/core";
+import { Drawer, IconButton } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { MdClose } from "react-icons/md";
 import "./styles.scss";
@@ -58,10 +50,12 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.25rem",
     color: "white",
     backgroundColor: mdGrey,
-    padding: theme.spacing(0, 1),
+    // padding: theme.spacing(0.7, 1),
+    padding: "0.5rem 1rem",
     // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
+    // ...theme.mixins.toolbar,
     justifyContent: "flex-start",
+    height: "60px",
   },
   content: {
     flexGrow: 1,
@@ -106,7 +100,7 @@ export default function InfoSidebar() {
           </IconButton>
           GROUP NAME
         </div>
-        <Divider />
+
         <div className="info">
           <div className="avatar">
             <img
@@ -145,11 +139,11 @@ export default function InfoSidebar() {
         </div>
         <div className="exit">
           <IoMdExit size={24} color="#ef697a" />
-          <bold>Exit Group</bold>
+          <span>Exit Group</span>
         </div>
         <div className="exit">
           <IoMdThumbsDown size={24} color="#ef697a" />
-          <bold>Report Group</bold>
+          <span>Report Group</span>
         </div>
         {/* <List>
           {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (

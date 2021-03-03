@@ -76,7 +76,8 @@ $mdGreen: "#009688" !default;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    bold {
+    span {
+      font-weight: 500;
       margin-left: 2rem;
       color: #ef697a;
     }
