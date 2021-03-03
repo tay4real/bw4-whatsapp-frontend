@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function InfoSidebar() {
   const classes = useStyles();
-  const theme = useTheme();
+  // const theme = useTheme();
   const { showInfoSidebar } = useSelector((state) => state.components);
   const dispatch = useDispatch();
   const handleDrawer = () => {
