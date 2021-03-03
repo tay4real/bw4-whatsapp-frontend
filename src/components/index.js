@@ -7,6 +7,7 @@ import React from "react";
 import { Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Profile from "./profile/Profile";
+import { BsSearch } from "react-icons/bs";
 
 export const ContinueWith = ({ title, className, loginWith }) => {
   return (
@@ -74,9 +75,11 @@ export const CustomDropdown = () => {
   );
 };
 
-export const ProfileImg = (props) => (
-  <img {...props} src={props.img_url} alt="user-img" />
-);
+export const ProfileImg = ({ avatar, style }) => {
+  return (
+    <img src={avatar} alt="user-img" className="user-image" style={style} />
+  );
+};
 
 export const WhastAppBanner = () => (
   <div className="landing-header">
@@ -98,5 +101,46 @@ export const WhastAppBanner = () => (
       </svg>
       <span className="landing-headerTitle"> WHATSAPP WEB </span>
     </Link>
+  </div>
+);
+
+export const SingleUser = ({ user }) => (
+  <div className="d-flex single-user">
+    <div className="mx-3 my-1 pt-2">
+      <ProfileImg avatar={user.avatar} />
+    </div>
+    <div
+      style={{
+        borderTop: "1px solid #90918e",
+        // width: "100%",
+        paddingTop: "10px",
+      }}
+    >
+      <h6>{user.firstName}</h6>
+      <small>{user.about}</small>
+    </div>
+  </div>
+);
+
+export const Input = ({ placeholder }) => (
+  <div
+    className="d-flex"
+    style={{
+      position: "relative",
+      margin: "5px 10px 5px 0px",
+      borderRadius: "15px",
+      width: "300px",
+      backgroundColor: "#323739",
+      color: "white",
+      paddingLeft: "40px",
+      border: "none",
+      height: "35px",
+    }}
+  >
+    <BsSearch
+      className="search-icon"
+      style={{ top: "15px", left: "35px", zIndex: 10 }}
+    />
+    <input type="text" placeholder={placeholder} className="search" />
   </div>
 );

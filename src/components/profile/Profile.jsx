@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Profile() {
+export default function Profile({ inComp = "Profile" }) {
   const classes = useStyles();
   const [state, setState] = React.useState(false);
 
@@ -36,7 +36,7 @@ export default function Profile() {
   return (
     <div>
       <>
-        <div onClick={toggleDrawer(true)}>Profile</div>
+        <div onClick={toggleDrawer(true)}>{inComp}</div>
         <Drawer
           anchstyle={{ display: "none" }}
           or={"left"}
@@ -56,7 +56,7 @@ export default function Profile() {
 
             <div id="img-profile">
               <ProfileImg
-                img_url={userInfos.avatar}
+                avatar={userInfos.avatar}
                 style={{ width: "170px", hieght: "250px", borderRadius: "50%" }}
               />
             </div>
