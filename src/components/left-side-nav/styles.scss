@@ -1,0 +1,42 @@
+#nav-left {
+  position: fixed;
+  background-color: #131c21;
+  color: white;
+  left: 0;
+  top: 0px;
+  width: 330px;
+  bottom: 0;
+
+  #nav-left-top {
+    background-color: #2a2f32;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-right: 1px solid rgba(252, 252, 252, 0.205);
+
+    svg {
+      margin: 15px;
+    }
+  }
+
+  #search {
+    position: relative;
+    margin: 5px 10px 5px 0px;
+    border-radius: 15px;
+    width: 300px;
+    background-color: #323739;
+    color: white;
+    padding-left: 40px;
+    border: none;
+    height: 35px;
+  }
+
+  #search-icon {
+    top: 15px;
+    left: 35px;
+    z-index: 10;
+
+    position: relative;
+  }
+}

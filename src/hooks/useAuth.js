@@ -9,8 +9,10 @@ const useAuth = () => {
   useEffect(() => {
     dispatch(fetchUser());
 
-    if (error && error.message) {
-      window.location.replace("/logout");
+    console.log("userfetch");
+
+    if (error) {
+      window.location.replace("/login");
     }
   }, [dispatch, error]);
 

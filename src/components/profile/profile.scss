@@ -1,0 +1,26 @@
+#profile-component {
+  background-color: #131c21;
+  height: 100%;
+  color: aliceblue;
+
+  #proile-top {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    background-color: #323739;
+    color: rgb(204, 204, 204);
+    height: 110px;
+    margin-bottom: 20px;
+  }
+
+  #img-profile {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+// sssssssssssssssssssssssssssssss
+.MuiBackdrop-root {
+  display: none !important;
+}

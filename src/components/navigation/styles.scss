@@ -4,20 +4,13 @@ $text_color: #d0d1d3;
   background-color: #2a2f32;
   position: fixed;
   top: 0;
-  left: 0;
+  left: 330px;
   right: 0;
   height: 60px;
-
   display: flex;
   justify-content: space-between;
-  width: 100%;
   align-items: center;
-
-  img {
-    width: 43px;
-    background-color: $text_color;
-    border-radius: 50%;
-  }
+  min-width: 400px;
 
   div {
     color: white;
