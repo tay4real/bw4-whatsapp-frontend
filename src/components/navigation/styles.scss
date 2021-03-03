@@ -43,4 +43,14 @@ $text_color: #d0d1d3;
       color: white;
     }
   }
+  .two,
+  .three {
+    align-items: center;
+  }
+  .two {
+    width: 100%;
+  }
+  .three {
+    width: calc(100% - 420px);
+  }
 }
