@@ -102,7 +102,7 @@ export default function InfoSidebar() {
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawer}>
-            <MdClose size={24} onClick={handleDrawer} color="white" />
+            <MdClose size={24} color="white" />
           </IconButton>
           GROUP NAME
         </div>

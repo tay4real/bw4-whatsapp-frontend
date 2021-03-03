@@ -6,7 +6,7 @@ import { BsSearch } from "react-icons/bs";
 
 const NavBar = () => {
   // const { userInfos } = useSelector((state) => state.user);
-  const showInfoSidebar = useSelector((state) => state.components);
+  const { showInfoSidebar } = useSelector((state) => state.components);
   // console.log(userInfos.username);
 
   return (
