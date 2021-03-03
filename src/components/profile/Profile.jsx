@@ -72,7 +72,7 @@ export default function Profile({ inComp = "Profile" }) {
 
             <div>
               About
-              <h4>Hey there! I am using WhatsApp.</h4>
+              <h6>{userInfos.about}</h6>
             </div>
           </div>
         </Drawer>

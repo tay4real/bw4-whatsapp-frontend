@@ -75,11 +75,9 @@ export const CustomDropdown = () => {
   );
 };
 
-export const ProfileImg = ({ avatar, style }) => {
-  return (
-    <img src={avatar} alt="user-img" className="user-image" style={style} />
-  );
-};
+export const ProfileImg = ({ avatar, style }) => (
+  <img src={avatar} alt="user-img" className="user-image" style={style} />
+);
 
 export const WhastAppBanner = () => (
   <div className="landing-header">
@@ -112,7 +110,7 @@ export const SingleUser = ({ user }) => (
     <div
       style={{
         borderTop: "1px solid #90918e",
-        // width: "100%",
+        width: "70%",
         paddingTop: "10px",
       }}
     >
