@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import "./chat.style.scss";
 import Picker from "emoji-picker-react";
 import { GrEmoji } from "react-icons/gr";
@@ -20,11 +21,14 @@ export default function Chat() {
 
   const [showEmoji, setEmojiShow] = useState(false);
   const toggleshowEmoji = () => setEmojiShow(!showEmoji);
-
+  const { showInfoSidebar } = useSelector((state) => state.components);
   return (
     <div id="chat-component">
       <EmojiPicker show={showEmoji} />
-      <div id="message-wrapper">
+      <div
+        id="message-wrapper"
+        style={{ width: showInfoSidebar ? `calc(100% - 740px)` : "100%" }}
+      >
         {showEmoji ? (
           <MdClear onClick={toggleshowEmoji} size={35} />
         ) : (
