@@ -5,9 +5,6 @@ import { BsSearch } from "react-icons/bs";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 
 const NavBar = () => {
-  // const { userInfos } = useSelector((state) => state.user);
-  // console.log(userInfos.username);
-
   return (
     <div id="navigation">
       <div className="d-flex">
