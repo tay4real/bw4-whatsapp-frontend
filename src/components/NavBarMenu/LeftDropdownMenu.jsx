@@ -6,17 +6,17 @@ import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import { BiDotsVerticalRounded } from "react-icons/bi";
-import { toggleInfoSidebar } from "../../actions/componentsActions";
+import { toggleProfileSidebar } from "../../actions/componentsActions";
 import "./styles.scss";
 
 // const useStyles = makeStyles((theme) => ({
 // }));
 
-export default function NavBarMenu() {
+export default function LeftDropdownMenu() {
   // const classes = useStyles();
   const dispatch = useDispatch();
-  function toggleSideBar() {
-    dispatch(toggleInfoSidebar());
+  function toggleProfile() {
+    dispatch(toggleProfileSidebar());
     handleClose();
   }
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -30,7 +30,7 @@ export default function NavBarMenu() {
   };
 
   const open = Boolean(anchorEl);
-  const id = open ? "right-navbar-menu" : undefined;
+  const id = open ? "left-navbar-menu" : undefined;
 
   return (
     <div>
@@ -38,7 +38,7 @@ export default function NavBarMenu() {
         <BiDotsVerticalRounded size={24} color="white" />
       </Button>
       <Popover
-        MenuList={id}
+        id={id}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
@@ -58,11 +58,13 @@ export default function NavBarMenu() {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={toggleSideBar}>Group / Contact Info</MenuItem>
-          <MenuItem onClick={handleClose}>Select messages</MenuItem>
-          <MenuItem onClick={handleClose}>Mute notifications</MenuItem>
-          <MenuItem onClick={handleClose}>Clear messages</MenuItem>
-          <MenuItem onClick={handleClose}>Delete chat / Exit Group</MenuItem>
+          <MenuItem onClick={handleClose}>New Group</MenuItem>
+          <MenuItem onClick={handleClose}>Create a room</MenuItem>
+          <MenuItem onClick={toggleProfile}>Profile</MenuItem>
+          <MenuItem onClick={handleClose}>Archived</MenuItem>
+          <MenuItem onClick={handleClose}>Starred</MenuItem>
+          <MenuItem onClick={handleClose}>Settings</MenuItem>
+          <MenuItem onClick={handleClose}>Logout</MenuItem>
         </MenuList>
       </Popover>
     </div>

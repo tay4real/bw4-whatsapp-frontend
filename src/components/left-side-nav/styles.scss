@@ -13,11 +13,8 @@
     align-items: center;
     justify-content: space-between;
     height: 60px;
+    padding: auto 1rem;
     border-right: 1px solid rgba(252, 252, 252, 0.205);
-
-    svg {
-      margin: 15px;
-    }
   }
 
   #search {

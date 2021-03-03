@@ -7,4 +7,5 @@ export const user_action_types = {
 
 export const components_action_types = {
   TOGGLE_INFOSIDEBAR: "TOGGLE_INFOSIDEBAR",
+  TOGGLE_PROFILE_SIDEBAR: "TOGGLE_PROFILE_SIDEBAR",
 };

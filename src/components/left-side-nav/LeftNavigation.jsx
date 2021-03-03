@@ -4,7 +4,7 @@ import { BsSearch } from "react-icons/bs";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { BiLoaderCircle } from "react-icons/bi";
 import { CustomDropdown } from "..";
-
+import LeftDropdownMenu from "../NavBarMenu/LeftDropdownMenu";
 export default function LeftNavigation() {
   return (
     <div id="nav-left">
@@ -17,15 +17,16 @@ export default function LeftNavigation() {
           />
         </div>
 
-        <div>
-          <BiLoaderCircle size={25} />
-          <IoChatboxEllipsesOutline size={25} />
-          <CustomDropdown />
+        <div className="d-flex row align-items-center mr-1">
+          <BiLoaderCircle size={24} className="ml-4" />
+          <IoChatboxEllipsesOutline size={24} className="ml-4" />
+          {/* <CustomDropdown /> */}
+          <LeftDropdownMenu />
         </div>
       </div>
 
       <div>
-        <div className="d-flex">
+        <div className="d-flex ">
           <BsSearch id="search-icon" />
           <input
             type="text"
