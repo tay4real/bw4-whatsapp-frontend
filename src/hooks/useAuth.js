@@ -13,7 +13,7 @@ const useAuth = () => {
     console.log("userfetch");
 
     if (error) {
-      window.location.replace("/logout");
+      window.location.replace("/login");
     }
   }, [dispatch, error]);
 
