@@ -27,17 +27,15 @@ export default function Chat() {
       <EmojiPicker show={showEmoji} />
       <div
         id="message-wrapper"
-        style={{ width: showInfoSidebar ? `calc(100% - 740px)` : "100%" }}
+        style={{ width: showInfoSidebar ? `calc(100% - 740px)` : "auto" }}
       >
         {showEmoji ? (
           <MdClear onClick={toggleshowEmoji} size={35} />
         ) : (
           <GrEmoji size={30} onClick={toggleshowEmoji} />
         )}
-
+        <MdAttachFile size={25} style={{ margin: "0 10px" }} />
         <label>
-          <MdAttachFile size={25} style={{ margin: "0 10px" }} />
-
           <input accept="image/*" id="icon-button-file" type="file" />
         </label>
 
