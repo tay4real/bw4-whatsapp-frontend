@@ -1,16 +1,21 @@
 import React from "react";
 // import { makeStyles } from "@material-ui/core/styles";
+import { useDispatch } from "react-redux";
 import Popover from "@material-ui/core/Popover";
 import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import { BiDotsVerticalRounded } from "react-icons/bi";
-
+import { toggleNavbarMenu } from "../../actions/componentsActions";
 // const useStyles = makeStyles((theme) => ({
 // }));
 
 export default function SimplePopover() {
   // const classes = useStyles();
+  const dispatch = useDispatch();
+  function toggleSideBar() {
+    dispatch(toggleNavbarMenu());
+  }
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -50,7 +55,7 @@ export default function SimplePopover() {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>Group / Contact Info</MenuItem>
+          <MenuItem onClick={toggleSideBar}>Group / Contact Info</MenuItem>
           <MenuItem onClick={handleClose}>Select messages</MenuItem>
           <MenuItem onClick={handleClose}>Mute notifications</MenuItem>
           <MenuItem onClick={handleClose}>Clear messages</MenuItem>
