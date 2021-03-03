@@ -15,6 +15,7 @@ export default function SimplePopover() {
   const dispatch = useDispatch();
   function toggleSideBar() {
     dispatch(toggleInfoSidebar());
+    handleClose();
   }
   const [anchorEl, setAnchorEl] = React.useState(null);
 
