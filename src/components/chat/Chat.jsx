@@ -6,6 +6,14 @@ import { GrEmoji } from "react-icons/gr";
 import { MdAttachFile, MdClear } from "react-icons/md";
 import { BsFillMicFill } from "react-icons/bs";
 
+import io from "socket.io-client";
+
+const connOpt = {
+  transports: ["websocket"],
+};
+
+const socket = io(process.env.REACT_APP_AI_URL);
+
 const EmojiPicker = ({ show }) => {
   return show ? (
     <div id="emoji-picker-react">
@@ -18,10 +26,10 @@ const EmojiPicker = ({ show }) => {
 
 export default function Chat() {
   const [message, setMessage] = useState("");
-
   const [showEmoji, setEmojiShow] = useState(false);
   const toggleshowEmoji = () => setEmojiShow(!showEmoji);
   const { showInfoSidebar } = useSelector((state) => state.components);
+
   return (
     <div id="chat-component">
       <EmojiPicker show={showEmoji} />
