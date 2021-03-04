@@ -10,6 +10,7 @@ import Profile from "./profile/Profile";
 import { BsSearch } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { setCurrentChat } from "../actions/currentChatIwht";
+import { toggleNewChatSidebar } from "../actions/componentsActions";
 
 export const ContinueWith = ({ title, className, loginWith }) => {
   return (
@@ -109,7 +110,10 @@ export const SingleUser = ({ user }) => {
   return (
     <div
       className="d-flex single-user"
-      onClick={() => dispatch(setCurrentChat(user))}
+      onClick={() => {
+        dispatch(setCurrentChat(user));
+        dispatch(toggleNewChatSidebar());
+      }}
     >
       <div className="mx-3 my-1 pt-2">
         <ProfileImg avatar={user.avatar} />

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllUsers } from "../../actions/allUsersActions";
 import { SingleUser } from "..";
 import "./new-chat.scss";
+import { toggleNewChatSidebar } from "../../actions/componentsActions";
 
 const useStyles = makeStyles({
   list: {
@@ -17,13 +18,14 @@ const useStyles = makeStyles({
 
 export default function Profile() {
   const classes = useStyles();
-  const [state, setState] = React.useState(false);
+  const { showNewChatSidebar } = useSelector((state) => state.components);
+
   const { users } = useSelector((state) => state.allUsers);
 
   console.log("users", users);
   const dispatch = useDispatch();
 
-  const toggleDrawer = (event, open) => {
+  const toggleDrawer = (event) => {
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
@@ -31,7 +33,7 @@ export default function Profile() {
       return;
     }
 
-    setState(open);
+    dispatch(toggleNewChatSidebar());
   };
 
   return (
@@ -41,14 +43,14 @@ export default function Profile() {
           size={25}
           onClick={(e) => {
             dispatch(fetchAllUsers());
-            toggleDrawer(e, true);
+            toggleDrawer(e);
           }}
         />
         <Drawer
           anchstyle={{ display: "none" }}
           or={"left"}
-          open={state}
-          onClose={(e) => toggleDrawer(e, false)}
+          open={showNewChatSidebar}
+          onClose={(e) => toggleDrawer(e)}
         >
           <div
             className={clsx(classes.list)}
@@ -56,7 +58,7 @@ export default function Profile() {
             id="profile-component"
           >
             <div id="proile-top">
-              <h5 onClick={(e) => toggleDrawer(e, false)}>
+              <h5 onClick={(e) => toggleDrawer(e)}>
                 <AiOutlineArrowLeft size={20} /> New Chat
               </h5>
             </div>
