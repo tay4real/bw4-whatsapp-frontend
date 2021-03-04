@@ -7,13 +7,11 @@ import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllUsers } from "../../actions/allUsersActions";
 import { SingleUser } from "..";
+import "./new-chat.scss";
 
 const useStyles = makeStyles({
   list: {
     width: 330,
-  },
-  fullList: {
-    width: "auto",
   },
 });
 
@@ -62,8 +60,8 @@ export default function Profile() {
                 <AiOutlineArrowLeft size={20} /> New Chat
               </h5>
             </div>
-
-            <div className="mt-4">
+            <input placeholder="Start message" />
+            <div className="pt-1">
               {users.map((user, idx) => (
                 <SingleUser key={idx} user={user} />
               ))}
