@@ -5,7 +5,6 @@ import { BiLoaderCircle } from "react-icons/bi";
 import LeftDropdownMenu from "../NavBarMenu/LeftDropdownMenu";
 import NewChat from "../new-chat";
 import Profile from "../profile";
-import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { ProfileImg } from "..";
 import { useSelector } from "react-redux";
 import { BsSearch } from "react-icons/bs";
@@ -21,8 +20,7 @@ export default function LeftNavigation() {
 
         <div className="d-flex row align-items-center mr-1">
           <BiLoaderCircle size={24} className="ml-4" />
-          <IoChatboxEllipsesOutline size={24} className="ml-4" />
-          {/* <CustomDropdown /> */}
+          <NewChat />
           <LeftDropdownMenu />
         </div>
       </div>

@@ -37,7 +37,7 @@ export default function Profile() {
   };
 
   return (
-    <div>
+    <div className="ml-3">
       <>
         <IoChatboxEllipsesOutline
           size={25}
