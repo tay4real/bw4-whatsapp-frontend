@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import "./chat.style.scss";
 import Picker from "emoji-picker-react";
@@ -26,20 +26,20 @@ const EmojiPicker = ({ show }) => {
 
 export default function Chat() {
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState("");
+  // const [messages, setMessages] = useState("");
   const [showEmoji, setEmojiShow] = useState(false);
   const toggleshowEmoji = () => setEmojiShow(!showEmoji);
-  const { components, currentChat, user } = useSelector((state) => state);
+  const { components, user } = useSelector((state) => state);
 
-  useEffect(() => {
-    socket.on("connection", (msg) =>
-      setMessages((messages) => messages.concat(msg))
-    );
+  // useEffect(() => {
+  //   socket.on("connection", (msg) =>
+  //     setMessages((messages) => messages.concat(msg))
+  //   );
 
-    socket.on("initOneToOne");
+  //   socket.on("initOneToOne");
 
-    return socket.removeAllListeners();
-  }, [user]);
+  //   return socket.removeAllListeners();
+  // }, [user]);
 
   const sendMessage = (e) => {
     e.preventDefault();
