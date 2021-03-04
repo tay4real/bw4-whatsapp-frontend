@@ -23,7 +23,7 @@ export default function Profile() {
   const { users } = useSelector((state) => state.allUsers);
   const { userInfos } = useSelector((state) => state.user);
 
-  console.log("users", users);
+  // console.log("users", users);
   const dispatch = useDispatch();
 
   const toggleDrawer = (event) => {

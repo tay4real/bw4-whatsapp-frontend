@@ -21,7 +21,6 @@ export default function LeftNavigation() {
       try {
         const res = await fetchBe.get("/chat/room");
         setRooms(res.data);
-        console.log("rooms", rooms);
       } catch (error) {
         console.log(error);
       }

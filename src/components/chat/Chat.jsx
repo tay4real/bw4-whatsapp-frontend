@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./chat.style.scss";
 import Picker from "emoji-picker-react";
@@ -6,13 +6,13 @@ import { GrEmoji } from "react-icons/gr";
 import { MdAttachFile, MdClear } from "react-icons/md";
 import { BsFillMicFill } from "react-icons/bs";
 
-// import io from "socket.io-client";
+import io from "socket.io-client";
 
-// const connOpt = {
-//   transports: ["websocket"],
-// };
+const connOpt = {
+  transports: ["websocket"],
+};
 
-// const socket = io(process.env.REACT_APP_AI_URL);
+const socket = io(process.env.REACT_APP_AI_URL, connOpt);
 
 const EmojiPicker = ({ show }) => {
   return show ? (
@@ -26,9 +26,34 @@ const EmojiPicker = ({ show }) => {
 
 export default function Chat() {
   const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState("");
   const [showEmoji, setEmojiShow] = useState(false);
   const toggleshowEmoji = () => setEmojiShow(!showEmoji);
-  const { components, currentChat } = useSelector((state) => state);
+  const { components, currentChat, user } = useSelector((state) => state);
+
+  useEffect(() => {
+    socket.on("connection", (msg) =>
+      setMessages((messages) => messages.concat(msg))
+    );
+
+    socket.on("initOneToOne");
+
+    return socket.removeAllListeners();
+  }, [user]);
+
+  const sendMessage = (e) => {
+    e.preventDefault();
+
+    if (e.keyCode === 13) {
+      alert("sssssssssss");
+      if (message !== "") {
+        socket.emit("connection", {
+          user: user.userInfos._id,
+          message,
+        });
+      }
+    }
+  };
 
   return (
     <div id="chat-component">
@@ -55,8 +80,15 @@ export default function Chat() {
           name=""
           id="input-message"
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          // onChange={(e) => setMessage(e.target.value)}
           placeholder="Type a message"
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              sendMessage(e);
+            } else {
+              setMessage(e.target.value);
+            }
+          }}
         />
         <BsFillMicFill size={25} style={{ margin: "0 10px" }} />
       </div>

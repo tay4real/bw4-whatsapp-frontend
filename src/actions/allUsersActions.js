@@ -19,7 +19,6 @@ export function fetchAllUsers() {
     dispatch(getAllUsers());
     try {
       const res = await fetchBe.get("/users");
-      console.log(res);
       dispatch(getAllUsersSuccess(res.data));
     } catch (error) {
       dispatch(getAllUsersFailure(error));
