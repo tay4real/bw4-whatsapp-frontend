@@ -6,13 +6,13 @@ import { GrEmoji } from "react-icons/gr";
 import { MdAttachFile, MdClear } from "react-icons/md";
 import { BsFillMicFill } from "react-icons/bs";
 
-import io from "socket.io-client";
+// import io from "socket.io-client";
 
-const connOpt = {
-  transports: ["websocket"],
-};
+// const connOpt = {
+//   transports: ["websocket"],
+// };
 
-const socket = io(process.env.REACT_APP_AI_URL);
+// const socket = io(process.env.REACT_APP_AI_URL);
 
 const EmojiPicker = ({ show }) => {
   return show ? (

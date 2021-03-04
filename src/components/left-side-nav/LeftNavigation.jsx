@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.scss";
+import { ChatItem } from "react-chat-elements";
 import { BiLoaderCircle } from "react-icons/bi";
 // import { CustomDropdown } from "..";
 import LeftDropdownMenu from "../NavBarMenu/LeftDropdownMenu";
@@ -8,8 +9,24 @@ import Profile from "../profile";
 import { ProfileImg } from "..";
 import { useSelector } from "react-redux";
 import { BsSearch } from "react-icons/bs";
+import fetchBe from "../../client/fetchBe";
 
 export default function LeftNavigation() {
+  const [rooms, setRooms] = useState([]);
+
+  useEffect(() => {
+    fetchRooms();
+  }, []);
+
+  const fetchRooms = async () => {
+    try {
+      const res = await fetchBe.get("/chat/room");
+      setRooms(res.data);
+      console.log("rooms", rooms);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const { userInfos } = useSelector((state) => state.user);
   return (
     <div id="nav-left">
@@ -24,7 +41,6 @@ export default function LeftNavigation() {
           <LeftDropdownMenu />
         </div>
       </div>
-
       <div>
         <div className="d-flex ">
           <BsSearch id="search-icon" />
@@ -35,6 +51,18 @@ export default function LeftNavigation() {
           />
         </div>
       </div>
+
+      {rooms.map((room) => (
+        <ChatItem
+          key={room._id}
+          avatar={room.avatar}
+          alt={"Reactjs"}
+          title={room.roomName}
+          subtitle={"What are you doing?"}
+          date={new Date()}
+          unread={0}
+        />
+      ))}
     </div>
   );
 }
