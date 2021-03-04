@@ -1,9 +1,11 @@
 import React from "react";
 import "./styles.scss";
 import { BiLoaderCircle } from "react-icons/bi";
-import { CustomDropdown } from "..";
+// import { CustomDropdown } from "..";
+import LeftDropdownMenu from "../NavBarMenu/LeftDropdownMenu";
 import NewChat from "../new-chat";
 import Profile from "../profile";
+import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { ProfileImg } from "..";
 import { useSelector } from "react-redux";
 import { BsSearch } from "react-icons/bs";
@@ -17,10 +19,11 @@ export default function LeftNavigation() {
           <Profile inComp={<ProfileImg avatar={userInfos.avatar} />} />
         </div>
 
-        <div className="d-flex">
-          <BiLoaderCircle size={25} />
-          <NewChat size={25} />
-          <CustomDropdown />
+        <div className="d-flex row align-items-center mr-1">
+          <BiLoaderCircle size={24} className="ml-4" />
+          <IoChatboxEllipsesOutline size={24} className="ml-4" />
+          {/* <CustomDropdown /> */}
+          <LeftDropdownMenu />
         </div>
       </div>
 
