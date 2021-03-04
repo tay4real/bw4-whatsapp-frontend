@@ -1,5 +1,5 @@
 import "./register-styles.scss";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import fetchBe from "../../client/fetchBe";
 import { DangerAlert, WhastAppBanner } from "../../components";
@@ -11,12 +11,11 @@ import { FaTwitter, FaFacebook } from "react-icons/fa";
 
 export default function Register() {
   const history = useHistory();
+  const prevCredentials = useRef();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const [credentials, setCredentials] = useState({
     nickname: "",
     email: "",
@@ -24,8 +23,21 @@ export default function Register() {
     firstName: "",
     lastName: "",
   });
-  // useEffect= () => {,[
-  // ]}
+
+  useEffect(() => {
+    if (credentials.email !== prevCredentials.email) {
+      setError(null);
+    }
+  }, [credentials]);
+
+  useEffect(() => {
+    confirmPassword.length !== 0 && confirmPassword !== credentials.password
+      ? confirmPassword.length < 6
+        ? setError("Password is too short")
+        : setError("Password mismatch!")
+      : setError(null);
+  }, [confirmPassword, credentials.password]);
+
   const handleConfirmPassword = (e) => {
     setConfirmPassword(e.target.value);
   };
@@ -35,31 +47,26 @@ export default function Register() {
 
   const submitUser = async (e) => {
     e.preventDefault();
-
-    if (confirmPassword !== credentials.password) {
-      setError("Password mismatch!");
-    } else {
-      setError(null);
-      setLoading(true);
-      try {
-        const res = await fetchBe.post("/users/register", credentials);
-        if (res.httpStatusCode === 201) {
-          setLoading(false);
-          setCredentials({
-            nickname: "",
-            email: "",
-            password: "",
-            firstName: "",
-            lastName: "",
-          });
-          //window.location.replace("/");
-          history.push("/login");
-        }
+    setError(null);
+    setLoading(true);
+    try {
+      const res = await fetchBe.post("/users/register", credentials);
+      if (res.httpStatusCode === 201) {
         setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        setError(error.response.data.message);
+        setCredentials({
+          nickname: "",
+          email: "",
+          password: "",
+          firstName: "",
+          lastName: "",
+        });
+        //window.location.replace("/");
+        history.push("/login");
       }
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setError(error.response.data.message);
     }
   };
 
