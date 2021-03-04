@@ -7,3 +7,7 @@ export const toggleInfoSidebar = () => ({
 export const toggleProfileSidebar = () => ({
   type: c.TOGGLE_PROFILE_SIDEBAR,
 });
+
+export const toggleNewChatSidebar = () => ({
+  type: c.TOGGLE_NEW_CHAT_SIDEBAR,
+});

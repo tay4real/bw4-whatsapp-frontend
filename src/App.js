@@ -5,6 +5,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import "./App.scss";
+import "react-chat-elements/dist/main.css";
 
 import Home from "./pages/home";
 import Login from "./pages/login";

@@ -1,27 +1,26 @@
 import React from "react";
 import "./styles.scss";
-import { BsSearch } from "react-icons/bs";
-import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { BiLoaderCircle } from "react-icons/bi";
-// import { CustomDropdown } from "..";
-import LeftDropdownMenu from "../NavBarMenu/LeftDropdownMenu";
+import { CustomDropdown } from "..";
+import NewChat from "../new-chat";
+import Profile from "../profile";
+import { ProfileImg } from "..";
+import { useSelector } from "react-redux";
+import { BsSearch } from "react-icons/bs";
+
 export default function LeftNavigation() {
+  const { userInfos } = useSelector((state) => state.user);
   return (
     <div id="nav-left">
       <div id="nav-left-top">
         <div>
-          <img
-            src={process.env.PUBLIC_URL + "default-profile.png"}
-            alt="default-profile"
-            className="user-img-default"
-          />
+          <Profile inComp={<ProfileImg avatar={userInfos.avatar} />} />
         </div>
 
-        <div className="d-flex row align-items-center mr-1">
-          <BiLoaderCircle size={24} className="ml-4" />
-          <IoChatboxEllipsesOutline size={24} className="ml-4" />
-          {/* <CustomDropdown /> */}
-          <LeftDropdownMenu />
+        <div className="d-flex">
+          <BiLoaderCircle size={25} />
+          <NewChat size={25} />
+          <CustomDropdown />
         </div>
       </div>
 
