@@ -28,14 +28,17 @@ export default function Chat() {
   const [message, setMessage] = useState("");
   const [showEmoji, setEmojiShow] = useState(false);
   const toggleshowEmoji = () => setEmojiShow(!showEmoji);
-  const { showInfoSidebar } = useSelector((state) => state.components);
+  const { components, currentChat } = useSelector((state) => state);
 
   return (
     <div id="chat-component">
+      {/* {currentChat.} */}
       <EmojiPicker show={showEmoji} />
       <div
         id="message-wrapper"
-        style={{ width: showInfoSidebar ? `calc(100% - 740px)` : "auto" }}
+        style={{
+          width: components.showInfoSidebar ? `calc(100% - 740px)` : "auto",
+        }}
       >
         {showEmoji ? (
           <MdClear onClick={toggleshowEmoji} size={35} />

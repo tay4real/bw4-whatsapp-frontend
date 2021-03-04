@@ -11,7 +11,7 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Logout from "./pages/logout";
-// import Protected from "./layouts/Protected";
+import Protected from "./layouts/Protected";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -38,9 +38,9 @@ function App() {
             path="/"
             exact
             render={(props) => (
-              // <Protected>
-              <Home {...props} />
-              // </Protected>
+              <Protected>
+                <Home {...props} />
+              </Protected>
             )}
           />
 

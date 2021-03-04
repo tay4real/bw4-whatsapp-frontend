@@ -7,26 +7,29 @@ import LeftDropdownMenu from "../NavBarMenu/LeftDropdownMenu";
 import NewChat from "../new-chat";
 import Profile from "../profile";
 import { ProfileImg } from "..";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BsSearch } from "react-icons/bs";
 import fetchBe from "../../client/fetchBe";
+import { setCurrentChat } from "../../actions/currentChatIwht";
 
 export default function LeftNavigation() {
+  const dispatch = useDispatch();
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
+    const fetchRooms = async () => {
+      try {
+        const res = await fetchBe.get("/chat/room");
+        setRooms(res.data);
+        console.log("rooms", rooms);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     fetchRooms();
   }, []);
 
-  const fetchRooms = async () => {
-    try {
-      const res = await fetchBe.get("/chat/room");
-      setRooms(res.data);
-      console.log("rooms", rooms);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const { userInfos } = useSelector((state) => state.user);
   return (
     <div id="nav-left">
@@ -53,15 +56,16 @@ export default function LeftNavigation() {
       </div>
 
       {rooms.map((room) => (
-        <ChatItem
-          key={room._id}
-          avatar={room.avatar}
-          alt={"Reactjs"}
-          title={room.roomName}
-          subtitle={"What are you doing?"}
-          date={new Date()}
-          unread={0}
-        />
+        <div key={room._id} onClick={() => dispatch(setCurrentChat(room))}>
+          <ChatItem
+            avatar={room.avatar}
+            alt={"room.roomName"}
+            title={room.roomName}
+            subtitle={"What are you doing?"}
+            date={new Date()}
+            unread={0}
+          />
+        </div>
       ))}
     </div>
   );
