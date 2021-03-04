@@ -21,8 +21,9 @@ export default function Profile() {
   const { showNewChatSidebar } = useSelector((state) => state.components);
 
   const { users } = useSelector((state) => state.allUsers);
+  const { userInfos } = useSelector((state) => state.user);
 
-  console.log("users", users);
+  // console.log("users", users);
   const dispatch = useDispatch();
 
   const toggleDrawer = (event) => {
@@ -64,9 +65,13 @@ export default function Profile() {
             </div>
             <input placeholder="Start message" />
             <div className="pt-1">
-              {users.map((user, idx) => (
-                <SingleUser key={idx} user={user} />
-              ))}
+              {users.map((user, idx) =>
+                user._id === userInfos._id ? (
+                  <></>
+                ) : (
+                  <SingleUser key={idx} user={user} />
+                )
+              )}
             </div>
           </div>
         </Drawer>
