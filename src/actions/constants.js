@@ -15,3 +15,7 @@ export const components_action_types = {
   TOGGLE_INFOSIDEBAR: "TOGGLE_INFOSIDEBAR",
   TOGGLE_PROFILE_SIDEBAR: "TOGGLE_PROFILE_SIDEBAR",
 };
+
+export const current_chat_whith = {
+  SET_CURRENT_CHAT: "SET_CURRENT_CHAT",
+};

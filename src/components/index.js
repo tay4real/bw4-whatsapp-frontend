@@ -8,6 +8,8 @@ import { Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Profile from "./profile/Profile";
 import { BsSearch } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { setCurrentChat } from "../actions/currentChatIwht";
 
 export const ContinueWith = ({ title, className, loginWith }) => {
   return (
@@ -102,23 +104,29 @@ export const WhastAppBanner = () => (
   </div>
 );
 
-export const SingleUser = ({ user }) => (
-  <div className="d-flex single-user">
-    <div className="mx-3 my-1 pt-2">
-      <ProfileImg avatar={user.avatar} />
-    </div>
+export const SingleUser = ({ user }) => {
+  const dispatch = useDispatch();
+  return (
     <div
-      style={{
-        borderTop: "1px solid #90918e",
-        width: "70%",
-        paddingTop: "10px",
-      }}
+      className="d-flex single-user"
+      onClick={() => dispatch(setCurrentChat(user))}
     >
-      <h6>{user.firstName}</h6>
-      <small>{user.about}</small>
+      <div className="mx-3 my-1 pt-2">
+        <ProfileImg avatar={user.avatar} />
+      </div>
+      <div
+        style={{
+          borderTop: "1px solid #90918e",
+          width: "70%",
+          paddingTop: "10px",
+        }}
+      >
+        <h6>{user.firstName}</h6>
+        <small>{user.about}</small>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export const Input = ({ placeholder }) => (
   <div
