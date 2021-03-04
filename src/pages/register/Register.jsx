@@ -1,5 +1,5 @@
 import "./register-styles.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import fetchBe from "../../client/fetchBe";
 import { DangerAlert, WhastAppBanner } from "../../components";
@@ -24,7 +24,8 @@ export default function Register() {
     firstName: "",
     lastName: "",
   });
-
+  // useEffect= () => {,[
+  // ]}
   const handleConfirmPassword = (e) => {
     setConfirmPassword(e.target.value);
   };
@@ -57,7 +58,7 @@ export default function Register() {
         setLoading(false);
       } catch (error) {
         setLoading(false);
-        setError(error.message);
+        setError(error.response.data.message);
       }
     }
   };
