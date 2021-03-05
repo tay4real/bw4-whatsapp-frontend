@@ -13,25 +13,13 @@ import { toggleProfileSidebar } from "../../actions/componentsActions";
 import { socket } from "../chat/Chat";
 export default function LeftNavigation() {
   const dispatch = useDispatch();
-  // const [rooms, setRooms] = useState([]);
   const { rooms } = useSelector((state) => state.allRooms);
 
-  // useEffect(() => {
-  //   const fetchRooms = async () => {
-  //     try {
-  //       const res = await fetchBe.get("/chat/room");
-
-  //       setRooms(res.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  //   fetchRooms();
   const { userInfos } = useSelector((state) => state.user);
-  // }, []);
+
   const onChatClick = (room) => {
     dispatch(setCurrentChat(room));
+
     socket.emit("addUserToRoom", {
       userId: userInfos._id,
       roomId: room._id,
