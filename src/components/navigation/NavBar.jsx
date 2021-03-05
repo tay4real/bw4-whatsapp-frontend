@@ -6,17 +6,19 @@ import { BsSearch } from "react-icons/bs";
 import { ProfileImg } from "..";
 
 const NavBar = () => {
-  const { to } = useSelector((state) => state.currentChat);
+  const { updatedAt, roomName, avatar } = useSelector(
+    (state) => state.currentChatRoom
+  );
   const { showInfoSidebar } = useSelector((state) => state.components);
   // console.log(userInfos.username);
 
   return (
     <div id="navigation">
       <div className="mx-3">
-        <ProfileImg avatar={to.avatar} />
+        <ProfileImg avatar={avatar} />
         <div id="nav-userInfo" className="mr-">
-          <h6>{to.firstName}</h6>
-          <small>{to.updatedAt}</small>
+          <h6>{roomName}</h6>
+          <small>{updatedAt}</small>
         </div>
       </div>
 

@@ -5,15 +5,16 @@ import Picker from "emoji-picker-react";
 import { GrEmoji } from "react-icons/gr";
 import { MdAttachFile, MdClear } from "react-icons/md";
 import { BsFillMicFill } from "react-icons/bs";
-import { MessageBox } from "react-chat-elements";
+// import { MessageBox } from "react-chat-elements";
 
-import io from "socket.io-client";
+// import io from "socket.io-client";
+import useChat from "../../hooks/useChat";
 
-const connOpt = {
-  transports: ["websocket"],
-};
+// const connOpt = {
+//   transports: ["websocket"],
+// };
 
-const socket = io(process.env.REACT_APP_AI_URL, connOpt);
+// const socket = io(process.env.REACT_APP_AI_URL, connOpt);
 
 const EmojiPicker = ({ show }) => {
   return show ? (
@@ -26,29 +27,26 @@ const EmojiPicker = ({ show }) => {
 };
 
 export default function Chat() {
-  const [message, setMessage] = useState("");
+  const [newMessage, setNewMessage] = useState("");
   const [showEmoji, setEmojiShow] = useState(false);
   const toggleshowEmoji = () => setEmojiShow(!showEmoji);
-  const { components, user } = useSelector((state) => state);
+  const { components, currentChatRoom } = useSelector((state) => state);
 
-  const sendMessage = (e) => {
-    e.preventDefault();
+  const roomId = currentChatRoom._id; // UserOne UserThwo "userIne-User_Two"
 
-    alert("sssssssssss");
-    if (e.keyCode === 13) {
-      if (message !== "") {
-        socket.emit("connection", {
-          user: user.userInfos._id,
-          message,
-        });
-      }
-    }
+  const { messages, sendMessage } = useChat(roomId);
+
+  const handleSendMEssage = () => {
+    sendMessage(newMessage);
+    setNewMessage("");
   };
 
   return (
     <div id="chat-component">
       <div style={{ marginBottom: "100px", width: "100%" }}>
-        <MessageBox
+        {JSON.stringify(messages)}
+
+        {/* <MessageBox
           position={"left"}
           type={"text"}
           text={
@@ -76,7 +74,7 @@ export default function Chat() {
               loading: 0,
             },
           }}
-        />
+        /> */}
       </div>
       {/* {currentChat.} */}
       <EmojiPicker show={showEmoji} />
@@ -100,17 +98,11 @@ export default function Chat() {
           type="text"
           name=""
           id="input-message"
-          value={message}
-          // onChange={(e) => setMessage(e.target.value)}
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
           placeholder="Type a message"
-          onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              sendMessage(e);
-            } else {
-              setMessage(e.target.value);
-            }
-          }}
         />
+        <button onClick={handleSendMEssage}>Send Message</button>
         <BsFillMicFill size={25} style={{ margin: "0 10px" }} />
       </div>
     </div>
