@@ -35,13 +35,16 @@
       input[type="text"],
       input[type="text"]:focus-visible {
         border: none;
+        outline: none;
+        width: 220px;
+        color: white;
       }
     }
   }
   #search {
     position: absolute;
     background: transparent;
-    color: grey;
+    color: white;
     left: 60px;
   }
   #search-icon {
