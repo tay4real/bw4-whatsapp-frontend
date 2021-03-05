@@ -16,7 +16,7 @@ const connOpt = {
   transports: ["websocket", "polling"],
 };
 
-let socket = io("http://localhost:3001", connOpt);
+let socket = io(process.env.REACT_APP_API_URL, connOpt);
 
 const EmojiPicker = ({ show }) => {
   return show ? (
@@ -31,48 +31,38 @@ const EmojiPicker = ({ show }) => {
 export default function Chat() {
   const [newMessage, setNewMessage] = useState("");
   const [showEmoji, setEmojiShow] = useState(false);
+
   const toggleshowEmoji = () => setEmojiShow(!showEmoji);
   const { components, currentChatRoom, user } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
-  // const { messages, sendMessage } = useChat(roomId);
-
-  // const handleSendMEssage = (e) => {
-  //   // sendMessage(newMessage);
-  //   setNewMessage(e.target);
-  // };
+  const userId = user.userInfos._id;
 
   useEffect(() => {
-    socket.emit("login", { userId: "603df05c3a49b1104915a727" });
+    socket.emit("login", { userId: userId });
 
+    // Getting all roon that user subscribed
     socket.on("roomList", (roomlist) => dispatch(setAllRooms(roomlist)));
+
+    socket.on("message", (msgs) => console.log("msgs", msgs));
 
     socket.on("connect", () => {
       console.log("socket.connected", socket.connected);
     });
 
-    // console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
-    // console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
-
-    // socket.emit("login", {
-    //   userId: "603df05c3a49b1104915a727",
-    // });
-
-    // socket.on("roomList", (rooms) => dispatch(setAllRooms(rooms)));
-
     return () => socket.removeAllListeners();
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   const sendMessage = (e) => {
     e.preventDefault();
 
     if (newMessage !== "") {
+      // SEND msg ro selected room
       socket.emit("sendMessageToRoom", {
-        //emitting an event with a payload to send the message to all connected users
-        roomId: currentChatRoom._id, //state.username
-        text: newMessage, //state.message
-        senderId: user._id,
+        roomId: currentChatRoom._id,
+        text: newMessage,
+        senderId: userId,
       });
 
       setNewMessage(""); //resets the message text
@@ -114,7 +104,6 @@ export default function Chat() {
           }}
         /> */}
       </div>
-      {/* {currentChat.} */}
       <EmojiPicker show={showEmoji} />
       <div
         id="message-wrapper"
