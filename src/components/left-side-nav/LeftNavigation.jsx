@@ -43,8 +43,8 @@ export default function LeftNavigation() {
           <LeftDropdownMenu />
         </div>
       </div>
-      <div>
-        <div className="d-flex ">
+      <div className="left-menu-searchbox">
+        <div className="searchbox-wrapper">
           <BsSearch id="search-icon" />
           <input
             type="text"
@@ -68,7 +68,7 @@ export default function LeftNavigation() {
               title={
                 room.isGroup
                   ? room.roomName
-                  : room.members.filter((m) => m._id !== userInfos._id)[0]
+                  : room.members?.filter((m) => m._id !== userInfos._id)[0]
                       .firstName
               }
               subtitle={room.messages[room.messages.length - 1].text}
