@@ -8,8 +8,9 @@ import { Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Profile from "./profile/Profile";
 import { BsSearch } from "react-icons/bs";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCurrentChat } from "../actions/currentChatIwht";
+import { socket } from "../components/chat/Chat";
 import { toggleNewChatSidebar } from "../actions/componentsActions";
 
 export const ContinueWith = ({ title, className, loginWith }) => {
@@ -107,12 +108,20 @@ export const WhastAppBanner = () => (
 
 export const SingleUser = ({ user }) => {
   const dispatch = useDispatch();
+
+  const { userInfos } = useSelector((state) => state.user);
+
   return (
     <div
       className="d-flex single-user"
       onClick={() => {
         dispatch(setCurrentChat(user));
         dispatch(toggleNewChatSidebar());
+
+        socket.emit("initOneToOne", {
+          sender: userInfos._id,
+          receiver: user._id,
+        });
       }}
     >
       <div className="mx-3 my-1 pt-2">
