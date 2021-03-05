@@ -1,10 +1,8 @@
 #chat-component {
-  position: fixed;
-  bottom: 0;
   display: flex;
   padding: 1rem;
-  left: 330px;
-
+  overflow-x: hidden;
+  overflow-y: scroll;
   #message-wrapper {
     position: fixed;
     bottom: 0;
@@ -39,6 +37,7 @@
     outline: 0;
     border: none;
     width: 100%;
+    z-index: 10;
   }
 
   #send-btn {
@@ -64,5 +63,16 @@ body {
 #message-box {
   display: block;
   margin-bottom: 100px;
-  width: 80%;
+  left: 330px;
+  width: calc(100% - 330px);
+  position: relative;
+}
+
+.rce-mbox-time.non-copiable {
+  color: grey !important;
+}
+
+.rce-mbox-right-notch,
+.rce-mbox-left-notch {
+  fill: #2a2f32 !important;
 }
