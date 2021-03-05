@@ -51,8 +51,8 @@ export default function LeftNavigation() {
           <LeftDropdownMenu />
         </div>
       </div>
-      <div>
-        <div className="d-flex ">
+      <div className="left-menu-searchbox">
+        <div className="searchbox-wrapper">
           <BsSearch id="search-icon" />
           <input
             type="text"
@@ -62,18 +62,30 @@ export default function LeftNavigation() {
         </div>
       </div>
 
-      {rooms.map((room) => (
-        <div key={room._id} onClick={() => onChatClick(room)}>
-          <ChatItem
-            avatar={room.avatar}
-            alt={"room.roomName"}
-            title={room.roomName}
-            subtitle={"What are you doing?"}
-            date={new Date()}
-            unread={0}
-          />
-        </div>
-      ))}
+
+      {userInfos._id &&
+        rooms.map((room) => (
+          <div key={room._id} onClick={() => dispatch(setCurrentChat(room))}>
+            <ChatItem
+              avatar={
+                room.isGroup
+                  ? room.avatar
+                  : room.members?.filter((m) => m._id !== userInfos._id)[0]
+                      .avatar
+              }
+              alt={"room.roomName"}
+              title={
+                room.isGroup
+                  ? room.roomName
+                  : room.members?.filter((m) => m._id !== userInfos._id)[0]
+                      .firstName
+              }
+              subtitle={room.messages[room.messages.length - 1].text}
+              date={room.messages[room.messages.length - 1].createdAt}
+              unread={0}
+            />
+          </div>
+        ))}
     </div>
   );
 }
