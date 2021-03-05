@@ -43,6 +43,10 @@
     .rce-citem-body--top-time {
       color: aliceblue;
     }
+    .rce-citem-body--top,
+    .rce-citem-body--bottom {
+      text-align: left;
+    }
   }
   .rce-citem:hover {
     background-color: #2a2f32;
