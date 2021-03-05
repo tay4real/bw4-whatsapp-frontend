@@ -9,7 +9,7 @@ import { ProfileImg } from "..";
 import { useDispatch, useSelector } from "react-redux";
 import { BsSearch } from "react-icons/bs";
 import { setCurrentChat } from "../../actions/currentChatIwht";
-
+import { socket } from "../chat/Chat";
 export default function LeftNavigation() {
   const dispatch = useDispatch();
   // const [rooms, setRooms] = useState([]);
@@ -27,9 +27,17 @@ export default function LeftNavigation() {
   //   };
 
   //   fetchRooms();
-  // }, []);
-
   const { userInfos } = useSelector((state) => state.user);
+  // }, []);
+  const onChatClick = (room) => {
+    dispatch(setCurrentChat(room));
+    socket.emit("addUserToRoom", {
+      userId: userInfos._id,
+      roomId: room._id,
+      nickname: userInfos.firsName,
+    });
+  };
+
   return (
     <div id="nav-left">
       <div id="nav-left-top">
@@ -53,6 +61,7 @@ export default function LeftNavigation() {
           />
         </div>
       </div>
+
 
       {userInfos._id &&
         rooms.map((room) => (

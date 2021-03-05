@@ -5,9 +5,11 @@ import Picker from "emoji-picker-react";
 import { GrEmoji } from "react-icons/gr";
 import { MdAttachFile, MdClear } from "react-icons/md";
 import { BsFillMicFill } from "react-icons/bs";
+import { MessageBox } from "react-chat-elements";
 
 import io from "socket.io-client";
 import { setAllRooms } from "../../actions/allRoomsActions";
+import { updateMessages } from "../../actions/currentChatIwht";
 // import { setAllRooms } from "../../actions/allRoomsActions";
 
 // import useChat from "../../hooks/useChat";
@@ -16,7 +18,7 @@ const connOpt = {
   transports: ["websocket", "polling"],
 };
 
-let socket = io(process.env.REACT_APP_API_URL, connOpt);
+export let socket = io(process.env.REACT_APP_API_URL, connOpt);
 
 const EmojiPicker = ({ show }) => {
   return show ? (
@@ -37,6 +39,8 @@ export default function Chat() {
 
   const dispatch = useDispatch();
 
+  const { messages } = currentChatRoom;
+
   const userId = user.userInfos._id;
 
   useEffect(() => {
@@ -48,6 +52,8 @@ export default function Chat() {
     socket.on("connect", () => {
       console.log("socket.connected", socket.connected);
     });
+
+    socket.on("sendMsgBack", (data) => dispatch(updateMessages(data)));
 
     return () => socket.removeAllListeners();
   }, [dispatch, userId]);
@@ -69,39 +75,17 @@ export default function Chat() {
 
   return (
     <div id="chat-component">
-      <div style={{ marginBottom: "100px", width: "100%" }}>
-        {/* {JSON.stringify(messages)} */}
-
-        {/* <MessageBox
-          position={"left"}
-          type={"text"}
-          text={
-            "Tempor duis do voluptate enim duis velit veniam aute ullamco dolore duis irure"
-          }
-          data={{
-            uri: "https://facebook.github.io/react/img/logo.svg",
-            status: {
-              click: false,
-              loading: 0,
-            },
-          }}
-        />
-
-        <MessageBox
-          position={"right"}
-          type={"text"}
-          text={
-            "Tempor duis do voluptate enim duis velit veniam aute ullamco dolore duis irure"
-          }
-          data={{
-            uri: "https://facebook.github.io/react/img/logo.svg",
-            status: {
-              click: false,
-              loading: 0,
-            },
-          }}
-        /> */}
+      <div id="message-box">
+        {messages.map((msg, idx) => (
+          <MessageBox
+            key={idx}
+            position={msg.sender === userId ? "left" : "right"}
+            type={"text"}
+            text={msg.text}
+          />
+        ))}
       </div>
+
       <EmojiPicker show={showEmoji} />
       <div
         id="message-wrapper"
@@ -119,15 +103,17 @@ export default function Chat() {
           <input accept="image/*" id="icon-button-file" type="file" />
         </label>
 
-        <input
-          type="text"
-          name=""
-          id="input-message"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          placeholder="Type a message"
-        />
-        <button onClick={sendMessage}>Send Message</button>
+        <form className="w-100" onSubmit={(e) => sendMessage(e)}>
+          <input
+            id="input-message"
+            type="text"
+            name=""
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            placeholder="Type a message"
+          />
+        </form>
+
         <BsFillMicFill size={25} style={{ margin: "0 10px" }} />
       </div>
     </div>

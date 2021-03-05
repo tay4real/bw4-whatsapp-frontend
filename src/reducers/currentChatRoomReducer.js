@@ -19,6 +19,9 @@ export default function currentChatReducers(state = initialState, action) {
     case c.SET_CURRENT_CHAT:
       return { ...action.payload };
 
+    case c.UPDATE_MESSAGES:
+      return { ...state, messages: [...state.messages, action.payload] };
+
     default:
       return state;
   }
