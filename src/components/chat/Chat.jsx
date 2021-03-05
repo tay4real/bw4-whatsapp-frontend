@@ -5,6 +5,7 @@ import Picker from "emoji-picker-react";
 import { GrEmoji } from "react-icons/gr";
 import { MdAttachFile, MdClear } from "react-icons/md";
 import { BsFillMicFill } from "react-icons/bs";
+import { MessageBox } from "react-chat-elements";
 
 import io from "socket.io-client";
 import { setAllRooms } from "../../actions/allRoomsActions";
@@ -36,6 +37,8 @@ export default function Chat() {
   const { components, currentChatRoom, user } = useSelector((state) => state);
 
   const dispatch = useDispatch();
+
+  const { messages } = currentChatRoom;
 
   const userId = user.userInfos._id;
 
@@ -70,38 +73,17 @@ export default function Chat() {
   return (
     <div id="chat-component">
       <div style={{ marginBottom: "100px", width: "100%" }}>
-        {/* {JSON.stringify(messages)} */}
+        {JSON.stringify(messages)}
 
-        {/* <MessageBox
-          position={"left"}
-          type={"text"}
-          text={
-            "Tempor duis do voluptate enim duis velit veniam aute ullamco dolore duis irure"
-          }
-          data={{
-            uri: "https://facebook.github.io/react/img/logo.svg",
-            status: {
-              click: false,
-              loading: 0,
-            },
-          }}
-        />
-
-        <MessageBox
-          position={"right"}
-          type={"text"}
-          text={
-            "Tempor duis do voluptate enim duis velit veniam aute ullamco dolore duis irure"
-          }
-          data={{
-            uri: "https://facebook.github.io/react/img/logo.svg",
-            status: {
-              click: false,
-              loading: 0,
-            },
-          }}
-        /> */}
+        {messages.map((msg) => (
+          <MessageBox
+            position={msg.sender === userId ? "left" : "right"}
+            type={"text"}
+            text={msg.text}
+          />
+        ))}
       </div>
+
       <EmojiPicker show={showEmoji} />
       <div
         id="message-wrapper"
