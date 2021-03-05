@@ -9,6 +9,7 @@ import { MessageBox } from "react-chat-elements";
 
 import io from "socket.io-client";
 import { setAllRooms } from "../../actions/allRoomsActions";
+import { updateMessages } from "../../actions/currentChatIwht";
 // import { setAllRooms } from "../../actions/allRoomsActions";
 
 // import useChat from "../../hooks/useChat";
@@ -58,13 +59,15 @@ export default function Chat() {
   const sendMessage = (e) => {
     e.preventDefault();
 
-    if (newMessage !== "") {
+    if (newMessage !== "" && (e.keyCode === 13 || e.key === "Enter")) {
       // SEND msg ro selected room
       socket.emit("sendMessageToRoom", {
         roomId: currentChatRoom._id,
         text: newMessage,
         senderId: userId,
       });
+
+      socket.on("sendMsgBack", (msg) => dispatch(updateMessages(msg)));
 
       setNewMessage(""); //resets the message text
     }
@@ -73,10 +76,9 @@ export default function Chat() {
   return (
     <div id="chat-component">
       <div style={{ marginBottom: "100px", width: "100%" }}>
-        {JSON.stringify(messages)}
-
-        {messages.map((msg) => (
+        {messages.map((msg, idx) => (
           <MessageBox
+            key={idx}
             position={msg.sender === userId ? "left" : "right"}
             type={"text"}
             text={msg.text}
@@ -101,15 +103,19 @@ export default function Chat() {
           <input accept="image/*" id="icon-button-file" type="file" />
         </label>
 
-        <input
-          type="text"
-          name=""
-          id="input-message"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          placeholder="Type a message"
-        />
-        <button onClick={sendMessage}>Send Message</button>
+        <form className="w-100">
+          <input
+            id="input-message"
+            type="text"
+            name=""
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            placeholder="Type a message"
+            onKeyUp={sendMessage}
+          />
+          {/* <button onClick={sendMessage}>Send Message</button> */}
+        </form>
+
         <BsFillMicFill size={25} style={{ margin: "0 10px" }} />
       </div>
     </div>

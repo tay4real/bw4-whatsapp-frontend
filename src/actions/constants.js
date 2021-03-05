@@ -19,6 +19,7 @@ export const components_action_types = {
 
 export const current_chat_whith = {
   SET_CURRENT_CHAT: "SET_CURRENT_CHAT",
+  UPDATE_MESSAGES: "UPDATE_MESSAGES",
 };
 
 export const all_rooms_action_types = {
