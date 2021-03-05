@@ -29,14 +29,14 @@ export default function LeftNavigation() {
   //   fetchRooms();
   const { userInfos } = useSelector((state) => state.user);
   // }, []);
-  const onChatClick = (room) => {
-    dispatch(setCurrentChat(room));
-    socket.emit("addUserToRoom", {
-      userId: userInfos._id,
-      roomId: room._id,
-      nickname: userInfos.firsName,
-    });
-  };
+  // const onChatClick = (room) => {
+  //   dispatch(setCurrentChat(room));
+  //   socket.emit("addUserToRoom", {
+  //     userId: userInfos._id,
+  //     roomId: room._id,
+  //     nickname: userInfos.firsName,
+  //   });
+  // };
 
   return (
     <div id="nav-left">
