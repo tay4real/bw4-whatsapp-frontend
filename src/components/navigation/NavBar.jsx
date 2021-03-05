@@ -6,7 +6,9 @@ import { BsSearch } from "react-icons/bs";
 import { ProfileImg } from "..";
 
 const NavBar = () => {
-  const { to } = useSelector((state) => state.currentChat);
+  const { updatedAt, roomName, avatar, isGroup, members} = useSelector(
+    (state) => state.currentChatRoom
+  );
   const { userInfos } = useSelector((state) => state.user);
   const { showInfoSidebar } = useSelector((state) => state.components);
   // console.log(userInfos.username);
@@ -16,19 +18,19 @@ const NavBar = () => {
       <div className="mx-3">
         <ProfileImg
           avatar={
-            to && to.isGroup
-              ? to.avatar
-              : to.members?.filter((e) => e._id !== userInfos._id)[0].avatar
+            isGroup
+              ? avatar
+              : members?.filter((e) => e._id !== userInfos._id)[0].avatar
           }
           style={{ display: to._id ? "inline-block" : "none" }}
         />
         <div id="nav-userInfo" className="mr-1">
           <h6>
-            {to.isGroup
-              ? to.roomName
-              : to.members?.filter((e) => e._id !== userInfos._id)[0].firtName}
+            {isGroup
+              ? roomName
+              : members?.filter((e) => e._id !== userInfos._id)[0].firtName}
           </h6>
-          <small>{to.updatedAt}</small>
+          <small>{updatedAt}</small>
         </div>
       </div>
 

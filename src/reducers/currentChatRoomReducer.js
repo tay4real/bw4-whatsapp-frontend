@@ -1,16 +1,23 @@
 import { current_chat_whith as c } from "../actions/constants";
 
 const initialState = {
-  messages: [],
-  to: {},
   loading: false,
   error: null,
+  avatar: "",
+  admins: [],
+  members: [],
+  roomName: "",
+  _id: "",
+  isGroup: false,
+  messages: [],
+  updatedAt: "",
+  createdAt: "",
 };
 
 export default function currentChatReducers(state = initialState, action) {
   switch (action.type) {
     case c.SET_CURRENT_CHAT:
-      return { ...state, to: action.payload };
+      return { ...action.payload };
 
     default:
       return state;

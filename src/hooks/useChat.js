@@ -1,26 +1,56 @@
-import { useEffect, useRef, useState } from "react";
-import socketIoClient from "socket.io-client";
-const ONE_TO_ONE_MESSAGE_EVENT = "initOneToOne";
-const SECKET_SERVER_URL = process.env.REACT_APP_API_URL;
+// import { useEffect, useRef, useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import socketIoClient from "socket.io-client";
+// import { setAllRooms } from "../actions/allRoomsActions";
 
-const useChat = (roomId) => {
-  const [messages, setMessages] = useState([]);
-  const socketRef = useRef();
+// const ONE_TO_ONE_MESSAGE_EVENT = "initOneToOne";
+// const SECKET_SERVER_URL = process.env.REACT_APP_API_URL;
 
-  useEffect(() => {
-    socketRef.current = socketIoClient(SECKET_SERVER_URL, {
-      query: { roomId },
-    });
+// const useChat = (roomId) => {
+//   const [messages, setMessages] = useState([]);
+//   const socketRef = useRef();
+//   const { user, currentChatRoom } = useSelector((state) => state);
+//   const dispatch = useDispatch();
 
-    socketRef.current.on(ONE_TO_ONE_MESSAGE_EVENT, (message) => {
-      const incomingMessage = {
-        ...message,
-        currentUser: message.senderId === socketRef.current.id,
-      };
-    });
-  });
+//   useEffect(() => {
+//     socketRef.current = socketIoClient(SECKET_SERVER_URL, {
+//       query: { roomId },
+//     });
 
-  return [];
-};
+//     socketRef.current.emit("login", {
+//       userId: user._id,
+//     });
 
-export default useChat;
+//     socketRef.current.on("roomList", (data) => dispatch(setAllRooms(data)));
+
+//     socketRef.current.emit(ONE_TO_ONE_MESSAGE_EVENT, {
+//       sender: user._id,
+//       receiver: currentChatRoom._id,
+//     });
+
+//     // const incomingMessage = {
+//     //   ...message,
+//     //   currentUser: message.senderId === socketRef.current.id,
+//     // };
+
+//     // setMessages((messages) => [...messages, incomingMessage]);
+
+//     // Destroys the socket reference
+//     // when the connection is closed
+//     return () => {
+//       socketRef.current.disconnect();
+//     };
+//   }, [roomId, user._id, currentChatRoom._id, dispatch]);
+
+//   const sendMessage = (messageBody) => {
+//     socketRef.current.emit("sendMessageToRoom", {
+//       sender: socketRef.current.id,
+//       text: messageBody,
+//       room: roomId,
+//     });
+//   };
+
+//   return { messages, sendMessage };
+// };
+
+// expot default useChat;

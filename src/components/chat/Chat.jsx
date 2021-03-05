@@ -1,19 +1,22 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./chat.style.scss";
 import Picker from "emoji-picker-react";
 import { GrEmoji } from "react-icons/gr";
 import { MdAttachFile, MdClear } from "react-icons/md";
 import { BsFillMicFill } from "react-icons/bs";
-import { MessageBox } from "react-chat-elements";
 
 import io from "socket.io-client";
+import { setAllRooms } from "../../actions/allRoomsActions";
+// import { setAllRooms } from "../../actions/allRoomsActions";
+
+// import useChat from "../../hooks/useChat";
 
 const connOpt = {
-  transports: ["websocket"],
+  transports: ["websocket", "polling"],
 };
 
-const socket = io(process.env.REACT_APP_AI_URL, connOpt);
+let socket = io(process.env.REACT_APP_API_URL, connOpt);
 
 const EmojiPicker = ({ show }) => {
   return show ? (
@@ -26,29 +29,50 @@ const EmojiPicker = ({ show }) => {
 };
 
 export default function Chat() {
-  const [message, setMessage] = useState("");
+  const [newMessage, setNewMessage] = useState("");
   const [showEmoji, setEmojiShow] = useState(false);
+
   const toggleshowEmoji = () => setEmojiShow(!showEmoji);
-  const { components, user } = useSelector((state) => state);
+  const { components, currentChatRoom, user } = useSelector((state) => state);
+
+  const dispatch = useDispatch();
+
+  const userId = user.userInfos._id;
+
+  useEffect(() => {
+    socket.emit("login", { userId: userId });
+
+    // Getting all roon that user subscribed
+    socket.on("roomList", (roomlist) => dispatch(setAllRooms(roomlist)));
+
+    socket.on("connect", () => {
+      console.log("socket.connected", socket.connected);
+    });
+
+    return () => socket.removeAllListeners();
+  }, [dispatch, userId]);
 
   const sendMessage = (e) => {
     e.preventDefault();
 
-    alert("sssssssssss");
-    if (e.keyCode === 13) {
-      if (message !== "") {
-        socket.emit("connection", {
-          user: user.userInfos._id,
-          message,
-        });
-      }
+    if (newMessage !== "") {
+      // SEND msg ro selected room
+      socket.emit("sendMessageToRoom", {
+        roomId: currentChatRoom._id,
+        text: newMessage,
+        senderId: userId,
+      });
+
+      setNewMessage(""); //resets the message text
     }
   };
 
   return (
     <div id="chat-component">
       <div style={{ marginBottom: "100px", width: "100%" }}>
-        <MessageBox
+        {/* {JSON.stringify(messages)} */}
+
+        {/* <MessageBox
           position={"left"}
           type={"text"}
           text={
@@ -76,9 +100,8 @@ export default function Chat() {
               loading: 0,
             },
           }}
-        />
+        /> */}
       </div>
-      {/* {currentChat.} */}
       <EmojiPicker show={showEmoji} />
       <div
         id="message-wrapper"
@@ -100,17 +123,11 @@ export default function Chat() {
           type="text"
           name=""
           id="input-message"
-          value={message}
-          // onChange={(e) => setMessage(e.target.value)}
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
           placeholder="Type a message"
-          onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              sendMessage(e);
-            } else {
-              setMessage(e.target.value);
-            }
-          }}
         />
+        <button onClick={sendMessage}>Send Message</button>
         <BsFillMicFill size={25} style={{ margin: "0 10px" }} />
       </div>
     </div>
