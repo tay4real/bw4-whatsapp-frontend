@@ -45,8 +45,6 @@ export default function Chat() {
     // Getting all roon that user subscribed
     socket.on("roomList", (roomlist) => dispatch(setAllRooms(roomlist)));
 
-    socket.on("message", (msgs) => console.log("msgs", msgs));
-
     socket.on("connect", () => {
       console.log("socket.connected", socket.connected);
     });
