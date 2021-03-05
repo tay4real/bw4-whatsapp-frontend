@@ -4,11 +4,12 @@ import { ChatItem } from "react-chat-elements";
 import { BiLoaderCircle } from "react-icons/bi";
 import LeftDropdownMenu from "../NavBarMenu/LeftDropdownMenu";
 import NewChat from "../new-chat";
-import Profile from "../profile";
+// import Profile from "../profile";
 import { ProfileImg } from "..";
 import { useDispatch, useSelector } from "react-redux";
 import { BsSearch } from "react-icons/bs";
 import { setCurrentChat } from "../../actions/currentChatIwht";
+import { toggleProfileSidebar } from "../../actions/componentsActions";
 import { socket } from "../chat/Chat";
 export default function LeftNavigation() {
   const dispatch = useDispatch();
@@ -25,12 +26,14 @@ export default function LeftNavigation() {
       nickname: userInfos.firsName,
     });
   };
-
+  function toggleProfile() {
+    dispatch(toggleProfileSidebar());
+  }
   return (
     <div id="nav-left">
       <div id="nav-left-top">
-        <div>
-          <Profile inComp={<ProfileImg avatar={userInfos.avatar} />} />
+        <div onClick={toggleProfile}>
+          <ProfileImg avatar={userInfos.avatar} />
         </div>
 
         <div className="d-flex row align-items-center mr-1">
@@ -39,8 +42,8 @@ export default function LeftNavigation() {
           <LeftDropdownMenu />
         </div>
       </div>
-      <div>
-        <div className="d-flex ">
+      <div className="left-menu-searchbox">
+        <div className="searchbox-wrapper">
           <BsSearch id="search-icon" />
           <input
             type="text"
@@ -50,18 +53,29 @@ export default function LeftNavigation() {
         </div>
       </div>
 
-      {rooms.map((room) => (
-        <div key={room._id} onClick={() => onChatClick(room)}>
-          <ChatItem
-            avatar={room.avatar}
-            alt={"room.roomName"}
-            title={room.roomName}
-            subtitle={"What are you doing?"}
-            date={new Date()}
-            unread={0}
-          />
-        </div>
-      ))}
+      {userInfos._id &&
+        rooms.map((room) => (
+          <div key={room._id} onClick={() => onChatClick(room)}>
+            <ChatItem
+              avatar={
+                room.isGroup
+                  ? room.avatar
+                  : room.members?.filter((m) => m._id !== userInfos._id)[0]
+                      .avatar
+              }
+              alt={"room.roomName"}
+              title={
+                room.isGroup
+                  ? room.roomName
+                  : room.members?.filter((m) => m._id !== userInfos._id)[0]
+                      .firstName
+              }
+              subtitle={room.messages[room.messages.length - 1].text}
+              date={room.messages[room.messages.length - 1].createdAt}
+              unread={0}
+            />
+          </div>
+        ))}
     </div>
   );
 }

@@ -79,9 +79,10 @@ export default function Chat() {
         {messages.map((msg, idx) => (
           <MessageBox
             key={idx}
-            position={msg.sender === userId ? "left" : "right"}
+            position={msg.sender === user.userInfos._id ? "right" : "left"}
             type={"text"}
             text={msg.text}
+            date={new Date(msg.createdAt)}
           />
         ))}
       </div>

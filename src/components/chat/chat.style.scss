@@ -1,9 +1,6 @@
 #chat-component {
-  position: fixed;
-  bottom: 0;
   display: flex;
   padding: 1rem;
-  left: 330px;
 
   #message-wrapper {
     position: fixed;
@@ -14,13 +11,18 @@
     align-items: center;
     right: 0;
     left: 330px;
-
+    z-index: 10;
     svg {
       cursor: pointer;
       color: antiquewhite;
     }
   }
-
+  #message-wrapper::after {
+    content: "";
+    background-color: #1e2428;
+    width: 20px;
+    height: 60px;
+  }
   input {
     outline: 0;
     border: none;
@@ -39,6 +41,7 @@
     outline: 0;
     border: none;
     width: 100%;
+    z-index: 10;
   }
 
   #send-btn {
@@ -64,5 +67,16 @@ body {
 #message-box {
   display: block;
   margin-bottom: 100px;
-  width: 80%;
+  left: 330px;
+  width: calc(100% - 330px);
+  position: relative;
+}
+
+.rce-mbox-time.non-copiable {
+  color: grey !important;
+}
+
+.rce-mbox-right-notch,
+.rce-mbox-left-notch {
+  fill: #2a2f32 !important;
 }
