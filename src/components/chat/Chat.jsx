@@ -75,7 +75,7 @@ export default function Chat() {
 
   return (
     <div id="chat-component">
-      <div style={{ marginBottom: "100px", width: "100%" }}>
+      <div id="message-box">
         {messages.map((msg, idx) => (
           <MessageBox
             key={idx}
