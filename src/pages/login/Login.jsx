@@ -26,7 +26,7 @@ export default function Login() {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      setError(error.message);
+      setError(error.response.data.message);
     }
   };
   const url = process.env.REACT_APP_API_URL + "/users";
