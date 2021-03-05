@@ -176,7 +176,7 @@ export default function InfoSidebar() {
                 {members?.filter((e) => e._id !== userInfos._id)[0].email}
               </h5>
             </div>
-            {true && (
+            {isGroup && (
               <div className="participants">
                 <h6> {members.length} participants</h6>
                 {members.map((m) => (
