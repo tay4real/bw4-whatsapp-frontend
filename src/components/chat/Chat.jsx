@@ -18,7 +18,7 @@ const connOpt = {
   transports: ["websocket", "polling"],
 };
 
-let socket = io(process.env.REACT_APP_API_URL, connOpt);
+export let socket = io(process.env.REACT_APP_API_URL, connOpt);
 
 const EmojiPicker = ({ show }) => {
   return show ? (
@@ -53,21 +53,21 @@ export default function Chat() {
       console.log("socket.connected", socket.connected);
     });
 
+    socket.on("sendMsgBack", (data) => dispatch(updateMessages(data)));
+
     return () => socket.removeAllListeners();
   }, [dispatch, userId]);
 
   const sendMessage = (e) => {
     e.preventDefault();
 
-    if (newMessage !== "" && (e.keyCode === 13 || e.key === "Enter")) {
+    if (newMessage !== "") {
       // SEND msg ro selected room
       socket.emit("sendMessageToRoom", {
         roomId: currentChatRoom._id,
         text: newMessage,
         senderId: userId,
       });
-
-      socket.on("sendMsgBack", (msg) => dispatch(updateMessages(msg)));
 
       setNewMessage(""); //resets the message text
     }
@@ -103,7 +103,7 @@ export default function Chat() {
           <input accept="image/*" id="icon-button-file" type="file" />
         </label>
 
-        <form className="w-100">
+        <form className="w-100" onSubmit={(e) => sendMessage(e)}>
           <input
             id="input-message"
             type="text"
@@ -111,9 +111,7 @@ export default function Chat() {
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Type a message"
-            onKeyUp={sendMessage}
           />
-          {/* <button onClick={sendMessage}>Send Message</button> */}
         </form>
 
         <BsFillMicFill size={25} style={{ margin: "0 10px" }} />
