@@ -11,6 +11,9 @@ const NavBar = () => {
   );
   const { showInfoSidebar } = useSelector((state) => state.components);
   // console.log(userInfos.username);
+  // const { rooms } = useSelector((state) => state.allRooms);
+
+  // const firstMsg =
 
   return (
     <div id="navigation">
