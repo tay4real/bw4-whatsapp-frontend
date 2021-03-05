@@ -50,7 +50,8 @@ $mdGreen: "#009688" !default;
   .media,
   .mute-notifications,
   .star-messages,
-  .participants {
+  .participants,
+  .contacts-info {
     margin: 0.5rem 0;
     padding: 1rem;
     background-color: #131c21;
@@ -66,8 +67,8 @@ $mdGreen: "#009688" !default;
   .mute-notifications {
     padding: 1rem 3rem;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: flex-start;
     text-align: left;
   }
   .exit {
@@ -80,12 +81,17 @@ $mdGreen: "#009688" !default;
     span {
       font-weight: 500;
       margin-left: 2rem;
+      font-size: 1rem;
       color: #ef697a;
     }
   }
   p,
-  h6 {
+  h6,
+  h5 {
     text-align: left;
+  }
+  p,
+  h6 {
     margin: 0 2rem;
   }
   p,
@@ -95,7 +101,6 @@ $mdGreen: "#009688" !default;
   }
   h6 {
     color: #009688;
-    align-self: left;
   }
 }
 

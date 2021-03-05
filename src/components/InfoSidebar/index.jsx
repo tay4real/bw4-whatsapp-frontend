@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RiPencilFill } from "react-icons/ri";
+import { RiPencilFill, RiDeleteBin7Fill } from "react-icons/ri";
 import { IoMdThumbsDown, IoMdExit } from "react-icons/io";
 import { Drawer, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { MdClose } from "react-icons/md";
+import { MdClose, MdBlock } from "react-icons/md";
 import "./styles.scss";
 import { toggleInfoSidebar } from "../../actions/componentsActions";
 import dayjs from "dayjs";
@@ -86,6 +86,7 @@ export default function InfoSidebar() {
     createdAt,
     roomName,
     avatar,
+    email,
     isGroup,
     description,
     members,
@@ -118,7 +119,12 @@ export default function InfoSidebar() {
               <div className="avatar">
                 <img
                   alt="group avtar"
-                  src="http://getdrawings.com/free-icon-bw/best-group-icon-for-whatsapp-6.png"
+                  src={
+                    isGroup
+                      ? avatar
+                      : members?.filter((e) => e._id !== userInfos._id)[0]
+                          .avatar
+                  }
                   style={{ backgroundColor: "white" }}
                 />
               </div>
@@ -142,13 +148,15 @@ export default function InfoSidebar() {
                 )}
               </div>
             </div>
-            <div className="description">
-              <h6>Description</h6>
-              <div className="description-row">
-                <p>{description ? description : "Add group description"}</p>
-                <RiPencilFill size={24} color="grey" />
+            {isGroup && (
+              <div className="description">
+                <h6>Description</h6>
+                <div className="description-row">
+                  <p>{description ? description : "Add group description"}</p>
+                  <RiPencilFill size={24} color="grey" />
+                </div>
               </div>
-            </div>
+            )}
             <div className="media">
               <h6>Media, Links and Docs</h6>
             </div>
@@ -158,17 +166,59 @@ export default function InfoSidebar() {
             <div className="star-messages">
               <h5>Starred Messages</h5>
             </div>
-            <div className="participants">
-              <h6> {members.length} participants</h6>
+            <div className="contacts-info">
+              <h6>About and email</h6>
+              <h5>
+                {members?.filter((e) => e._id !== userInfos._id)[0].description}
+              </h5>
+              <hr />
+              <h5 className="px-3 mx-3">
+                {members?.filter((e) => e._id !== userInfos._id)[0].email}
+              </h5>
             </div>
-            <div className="exit">
-              <IoMdExit size={24} color="#ef697a" />
-              <span>Exit Group</span>
-            </div>
+            {true && (
+              <div className="participants">
+                <h6> {members.length} participants</h6>
+                {members.map((m) => (
+                  <div
+                    key={m._id}
+                    className="row d-flex my-3 mx-2 w-100  align-items-center"
+                  >
+                    <img
+                      src={m.avatar}
+                      style={{
+                        borderRadius: "50%",
+                        margin: "auto 2rem",
+                        width: "40px",
+                      }}
+                    />
+                    <h5>{m.firstName}</h5>
+                  </div>
+                ))}
+              </div>
+            )}
+            {/* isGroup === false  groups in common*/}
+            {isGroup ? (
+              <div className="exit">
+                <IoMdExit size={24} color="#ef697a" />
+                <span>Exit Group</span>
+              </div>
+            ) : (
+              <div className="exit">
+                <MdBlock size={24} color="#ef697a" />
+                <span>Block </span>
+              </div>
+            )}
             <div className="exit">
               <IoMdThumbsDown size={24} color="#ef697a" />
-              <span>Report Group</span>
+              <span>Report {isGroup ? "Group" : "Chat"}</span>
             </div>
+            {!isGroup && (
+              <div className="exit">
+                <RiDeleteBin7Fill size={24} color="#ef697a" />
+                <span>Delete Chat</span>
+              </div>
+            )}
           </>
         )}
       </Drawer>
