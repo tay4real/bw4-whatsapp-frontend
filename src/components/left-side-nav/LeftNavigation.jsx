@@ -9,6 +9,7 @@ import { ProfileImg } from "..";
 import { useDispatch, useSelector } from "react-redux";
 import { BsSearch } from "react-icons/bs";
 import { setCurrentChat } from "../../actions/currentChatIwht";
+import { toggleProfileSidebar } from "../../actions/componentsActions";
 import { socket } from "../chat/Chat";
 export default function LeftNavigation() {
   const dispatch = useDispatch();
@@ -29,20 +30,22 @@ export default function LeftNavigation() {
   //   fetchRooms();
   const { userInfos } = useSelector((state) => state.user);
   // }, []);
-  // const onChatClick = (room) => {
-  //   dispatch(setCurrentChat(room));
-  //   socket.emit("addUserToRoom", {
-  //     userId: userInfos._id,
-  //     roomId: room._id,
-  //     nickname: userInfos.firsName,
-  //   });
-  // };
-
+  const onChatClick = (room) => {
+    dispatch(setCurrentChat(room));
+    socket.emit("addUserToRoom", {
+      userId: userInfos._id,
+      roomId: room._id,
+      nickname: userInfos.firsName,
+    });
+  };
+  function toggleProfile() {
+    dispatch(toggleProfileSidebar());
+  }
   return (
     <div id="nav-left">
       <div id="nav-left-top">
-        <div>
-          <Profile inComp={<ProfileImg avatar={userInfos.avatar} />} />
+        <div onClick={toggleProfile}>
+          <ProfileImg avatar={userInfos.avatar} />
         </div>
 
         <div className="d-flex row align-items-center mr-1">
@@ -64,7 +67,7 @@ export default function LeftNavigation() {
 
       {userInfos._id &&
         rooms.map((room) => (
-          <div key={room._id} onClick={() => dispatch(setCurrentChat(room))}>
+          <div key={room._id} onClick={() => onChatClick(room)}>
             <ChatItem
               avatar={
                 room.isGroup
