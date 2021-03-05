@@ -4,7 +4,7 @@ import { ChatItem } from "react-chat-elements";
 import { BiLoaderCircle } from "react-icons/bi";
 import LeftDropdownMenu from "../NavBarMenu/LeftDropdownMenu";
 import NewChat from "../new-chat";
-import Profile from "../profile";
+// import Profile from "../profile";
 import { ProfileImg } from "..";
 import { useDispatch, useSelector } from "react-redux";
 import { BsSearch } from "react-icons/bs";
