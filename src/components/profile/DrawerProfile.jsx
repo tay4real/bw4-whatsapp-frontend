@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Drawer } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-
+import { RiPencilFill } from "react-icons/ri";
 // import clsx from "clsx";
 import "./profile.scss";
 import "../InfoSidebar/styles.scss";
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   drawerHeader: {
     display: "flex",
     alignItems: "center",
-    fontSize: "1.25rem",
+    fontSize: "1rem",
     color: "white",
     backgroundColor: mdGrey,
     // padding: theme.spacing(0.7, 1),
@@ -114,23 +114,28 @@ export default function DrawerProfile() {
 
           <div id="img-profile">
             <ProfileImg
-              img_url={userInfos.avatar}
-              style={{ width: "170px", hieght: "250px", borderRadius: "50%" }}
+              avatar={userInfos.avatar}
+              style={{ width: "200px", hieght: "250px", borderRadius: "50%" }}
             />
           </div>
-          <div className="border-bottom">
-            Your Name
-            <h4>{userInfos.firstName}</h4>
+          <div className="description mt-3">
+            <h6>Your Name</h6>
+            <div className="description-row">
+              <p>{userInfos.firstName + " " + userInfos.lastName}</p>
+              <RiPencilFill size={24} color="grey" className="mr-4" />
+            </div>
           </div>
-
           <p>
             This is not username or pin. This name will be visible to your
             WhatsApp concatcts
           </p>
 
-          <div>
-            About
-            <h4>Hey there! I am using WhatsApp.</h4>
+          <div className="description">
+            <h6>About</h6>
+            <div className="description-row">
+              <p>{userInfos.description}</p>
+              <RiPencilFill size={24} color="grey" className="mr-4" />
+            </div>
           </div>
         </div>
       </Drawer>
