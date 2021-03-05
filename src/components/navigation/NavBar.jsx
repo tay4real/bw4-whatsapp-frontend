@@ -40,8 +40,12 @@ const NavBar = () => {
 
       <div className={showInfoSidebar === true ? "three" : "two"}>
         {/* <div className="three"> */}
-        <BsSearch size={17} />
-        <NavBarMenu />
+        {roomName && (
+          <>
+            <BsSearch size={17} />
+            <NavBarMenu />
+          </>
+        )}
       </div>
     </div>
   );
