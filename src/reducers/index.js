@@ -2,13 +2,15 @@ import { combineReducers } from "redux";
 import user from "./userReducer";
 import allUsers from "./allUsersReducer";
 import componentsReducer from "./compoenetsReducer";
-import currentChat from "./currentChatReducer";
+import currentChatRoom from "./currentChatRoomReducer";
+import allRooms from "./allRoomsReducer";
 
 const rootReducer = combineReducers({
   user,
   allUsers,
   components: componentsReducer,
-  currentChat,
+  currentChatRoom,
+  allRooms,
 });
 
 export default rootReducer;

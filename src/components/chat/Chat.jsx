@@ -1,18 +1,24 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./chat.style.scss";
 import Picker from "emoji-picker-react";
 import { GrEmoji } from "react-icons/gr";
 import { MdAttachFile, MdClear } from "react-icons/md";
 import { BsFillMicFill } from "react-icons/bs";
+import { MessageBox } from "react-chat-elements";
 
-// import io from "socket.io-client";
+import io from "socket.io-client";
+import { setAllRooms } from "../../actions/allRoomsActions";
+import { updateMessages } from "../../actions/currentChatIwht";
+// import { setAllRooms } from "../../actions/allRoomsActions";
 
-// const connOpt = {
-//   transports: ["websocket"],
-// };
+// import useChat from "../../hooks/useChat";
 
-// const socket = io(process.env.REACT_APP_AI_URL, connOpt);
+const connOpt = {
+  transports: ["websocket", "polling"],
+};
+
+export let socket = io(process.env.REACT_APP_API_URL, connOpt);
 
 const EmojiPicker = ({ show }) => {
   return show ? (
@@ -25,39 +31,61 @@ const EmojiPicker = ({ show }) => {
 };
 
 export default function Chat() {
-  const [message, setMessage] = useState("");
-  // const [messages, setMessages] = useState("");
+  const [newMessage, setNewMessage] = useState("");
   const [showEmoji, setEmojiShow] = useState(false);
+
   const toggleshowEmoji = () => setEmojiShow(!showEmoji);
-  const { components } = useSelector((state) => state);
+  const { components, currentChatRoom, user } = useSelector((state) => state);
 
-  // useEffect(() => {
-  //   socket.on("connection", (msg) =>
-  //     setMessages((messages) => messages.concat(msg))
-  //   );
+  const dispatch = useDispatch();
 
-  //   socket.on("initOneToOne");
+  const { messages } = currentChatRoom;
 
-  //   return socket.removeAllListeners();
-  // }, [user]);
+  const userId = user.userInfos._id;
 
-  // const sendMessage = (e) => {
-  //   e.preventDefault();
+  useEffect(() => {
+    socket.emit("login", { userId: userId });
 
-  //   if (e.keyCode === 13) {
-  //     alert("sssssssssss");
-  //     if (message !== "") {
-  //       socket.emit("connection", {
-  //         user: user.userInfos._id,
-  //         message,
-  //       });
-  //     }
-  //   }
-  // };
+    // Getting all roon that user subscribed
+    socket.on("roomList", (roomlist) => dispatch(setAllRooms(roomlist)));
+
+    socket.on("connect", () => {
+      console.log("socket.connected", socket.connected);
+    });
+
+    socket.on("sendMsgBack", (data) => dispatch(updateMessages(data)));
+
+    return () => socket.removeAllListeners();
+  }, [dispatch, userId]);
+
+  const sendMessage = (e) => {
+    e.preventDefault();
+
+    if (newMessage !== "") {
+      // SEND msg ro selected room
+      socket.emit("sendMessageToRoom", {
+        roomId: currentChatRoom._id,
+        text: newMessage,
+        senderId: userId,
+      });
+
+      setNewMessage(""); //resets the message text
+    }
+  };
 
   return (
     <div id="chat-component">
-      {/* {currentChat.} */}
+      <div id="message-box">
+        {messages.map((msg, idx) => (
+          <MessageBox
+            key={idx}
+            position={msg.sender === userId ? "left" : "right"}
+            type={"text"}
+            text={msg.text}
+          />
+        ))}
+      </div>
+
       <EmojiPicker show={showEmoji} />
       <div
         id="message-wrapper"
@@ -75,21 +103,17 @@ export default function Chat() {
           <input accept="image/*" id="icon-button-file" type="file" />
         </label>
 
-        <input
-          type="text"
-          name=""
-          id="input-message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Type a message"
-          // onKeyPress={(e) => {
-          //   if (e.key === "Enter") {
-          //     sendMessage(e);
-          //   } else {
-          //     setMessage(e.target.value);
-          //   }
-          // }}
-        />
+        <form className="w-100" onSubmit={(e) => sendMessage(e)}>
+          <input
+            id="input-message"
+            type="text"
+            name=""
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            placeholder="Type a message"
+          />
+        </form>
+
         <BsFillMicFill size={25} style={{ margin: "0 10px" }} />
       </div>
     </div>
