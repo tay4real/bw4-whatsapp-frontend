@@ -56,6 +56,8 @@ const useStyles = makeStyles((theme) => ({
     // ...theme.mixins.toolbar,
     justifyContent: "flex-start",
     height: "60px",
+    width: "100%",
+    position: "fixed",
   },
   content: {
     flexGrow: 1,
