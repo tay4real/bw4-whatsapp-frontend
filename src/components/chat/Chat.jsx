@@ -1,20 +1,22 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./chat.style.scss";
 import Picker from "emoji-picker-react";
 import { GrEmoji } from "react-icons/gr";
 import { MdAttachFile, MdClear } from "react-icons/md";
 import { BsFillMicFill } from "react-icons/bs";
-// import { MessageBox } from "react-chat-elements";
 
-// import io from "socket.io-client";
-import useChat from "../../hooks/useChat";
+import io from "socket.io-client";
+import { setAllRooms } from "../../actions/allRoomsActions";
+// import { setAllRooms } from "../../actions/allRoomsActions";
 
-// const connOpt = {
-//   transports: ["websocket"],
-// };
+// import useChat from "../../hooks/useChat";
 
-// const socket = io(process.env.REACT_APP_AI_URL, connOpt);
+const connOpt = {
+  transports: ["websocket", "polling"],
+};
+
+let socket = io("http://localhost:3001", connOpt);
 
 const EmojiPicker = ({ show }) => {
   return show ? (
@@ -30,21 +32,57 @@ export default function Chat() {
   const [newMessage, setNewMessage] = useState("");
   const [showEmoji, setEmojiShow] = useState(false);
   const toggleshowEmoji = () => setEmojiShow(!showEmoji);
-  const { components, currentChatRoom } = useSelector((state) => state);
+  const { components, currentChatRoom, user } = useSelector((state) => state);
 
-  const roomId = currentChatRoom._id; // UserOne UserThwo "userIne-User_Two"
+  const dispatch = useDispatch();
 
-  const { messages, sendMessage } = useChat(roomId);
+  // const { messages, sendMessage } = useChat(roomId);
 
-  const handleSendMEssage = () => {
-    sendMessage(newMessage);
-    setNewMessage("");
+  // const handleSendMEssage = (e) => {
+  //   // sendMessage(newMessage);
+  //   setNewMessage(e.target);
+  // };
+
+  useEffect(() => {
+    socket.emit("login", { userId: "603df05c3a49b1104915a727" });
+
+    socket.on("roomList", (roomlist) => dispatch(setAllRooms(roomlist)));
+
+    socket.on("connect", () => {
+      console.log("socket.connected", socket.connected);
+    });
+
+    // console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+    // console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+
+    // socket.emit("login", {
+    //   userId: "603df05c3a49b1104915a727",
+    // });
+
+    // socket.on("roomList", (rooms) => dispatch(setAllRooms(rooms)));
+
+    return () => socket.removeAllListeners();
+  }, [dispatch]);
+
+  const sendMessage = (e) => {
+    e.preventDefault();
+
+    if (newMessage !== "") {
+      socket.emit("sendMessageToRoom", {
+        //emitting an event with a payload to send the message to all connected users
+        roomId: currentChatRoom._id, //state.username
+        text: newMessage, //state.message
+        senderId: user._id,
+      });
+
+      setNewMessage(""); //resets the message text
+    }
   };
 
   return (
     <div id="chat-component">
       <div style={{ marginBottom: "100px", width: "100%" }}>
-        {JSON.stringify(messages)}
+        {/* {JSON.stringify(messages)} */}
 
         {/* <MessageBox
           position={"left"}
@@ -102,7 +140,7 @@ export default function Chat() {
           onChange={(e) => setNewMessage(e.target.value)}
           placeholder="Type a message"
         />
-        <button onClick={handleSendMEssage}>Send Message</button>
+        <button onClick={sendMessage}>Send Message</button>
         <BsFillMicFill size={25} style={{ margin: "0 10px" }} />
       </div>
     </div>

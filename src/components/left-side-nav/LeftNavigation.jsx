@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./styles.scss";
 import { ChatItem } from "react-chat-elements";
 import { BiLoaderCircle } from "react-icons/bi";
-// import { CustomDropdown } from "..";
 import LeftDropdownMenu from "../NavBarMenu/LeftDropdownMenu";
 import NewChat from "../new-chat";
 import Profile from "../profile";
 import { ProfileImg } from "..";
 import { useDispatch, useSelector } from "react-redux";
 import { BsSearch } from "react-icons/bs";
-import fetchBe from "../../client/fetchBe";
 import { setCurrentChat } from "../../actions/currentChatIwht";
 
 export default function LeftNavigation() {
   const dispatch = useDispatch();
-  const [rooms, setRooms] = useState([]);
+  // const [rooms, setRooms] = useState([]);
+  const { rooms } = useSelector((state) => state.allRooms);
 
-  useEffect(() => {
-    const fetchRooms = async () => {
-      try {
-        const res = await fetchBe.get("/chat/room");
-        setRooms(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchRooms = async () => {
+  //     try {
+  //       const res = await fetchBe.get("/chat/room");
 
-    fetchRooms();
-  }, []);
+  //       setRooms(res.data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+
+  //   fetchRooms();
+  // }, []);
 
   const { userInfos } = useSelector((state) => state.user);
   return (
