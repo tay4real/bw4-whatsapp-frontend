@@ -22,7 +22,6 @@ $mdGreen: "#009688" !default;
     display: flex;
     flex-direction: column;
     margin-bottom: 0.5rem;
-    margin-top: 60px;
     .sidebar-info {
       margin: 1rem 0 0 0;
       .sidebar-info-row1 {
@@ -50,8 +49,7 @@ $mdGreen: "#009688" !default;
   .media,
   .mute-notifications,
   .star-messages,
-  .participants,
-  .contacts-info {
+  .participants {
     margin: 0.5rem 0;
     padding: 1rem;
     background-color: #131c21;
@@ -67,8 +65,8 @@ $mdGreen: "#009688" !default;
   .mute-notifications {
     padding: 1rem 3rem;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
     text-align: left;
   }
   .exit {
@@ -81,26 +79,21 @@ $mdGreen: "#009688" !default;
     span {
       font-weight: 500;
       margin-left: 2rem;
-      font-size: 1rem;
       color: #ef697a;
     }
   }
   p,
-  h6,
-  h5 {
-    text-align: left;
-  }
-  p,
   h6 {
+    text-align: left;
     margin: 0 2rem;
   }
   p,
   h5 {
-    color: #ccc;
-    font-weight: 500;
+    color: darkgray;
   }
   h6 {
     color: #009688;
+    align-self: left;
   }
 }
 
