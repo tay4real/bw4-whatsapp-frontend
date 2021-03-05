@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
+import { BsSearch } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllUsers } from "../../actions/allUsersActions";
 import { SingleUser } from "..";
@@ -63,8 +64,19 @@ export default function Profile() {
                 <AiOutlineArrowLeft size={20} /> New Chat
               </h5>
             </div>
-            <input placeholder="Start message" />
-            <div className="pt-1">
+
+            <div className="newchat-searchbox">
+              <div className="searchbox-wrapper">
+                <BsSearch id="search-icon" />
+                <input
+                  type="text"
+                  placeholder="Search or start new chat"
+                  id="search"
+                />
+              </div>
+            </div>
+
+            <div className="">
               {users.map((user, idx) =>
                 user._id === userInfos._id ? (
                   <></>
