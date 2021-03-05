@@ -82,7 +82,7 @@ export default function Chat() {
             position={msg.sender === user.userInfos._id ? "right" : "left"}
             type={"text"}
             text={msg.text}
-            date={msg.createdAt}
+            date={new Date(msg.createdAt)}
           />
         ))}
       </div>

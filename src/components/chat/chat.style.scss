@@ -1,8 +1,7 @@
 #chat-component {
   display: flex;
   padding: 1rem;
-  overflow-x: hidden;
-  overflow-y: scroll;
+
   #message-wrapper {
     position: fixed;
     bottom: 0;
@@ -12,13 +11,18 @@
     align-items: center;
     right: 0;
     left: 330px;
-
+    z-index: 10;
     svg {
       cursor: pointer;
       color: antiquewhite;
     }
   }
-
+  #message-wrapper::after {
+    content: "";
+    background-color: #1e2428;
+    width: 20px;
+    height: 60px;
+  }
   input {
     outline: 0;
     border: none;
